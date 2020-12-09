@@ -1,37 +1,19 @@
-HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
+.idea/
 *.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+out/
+gen/
+idea-gitignore.jar
+resources/templates.list
+resources/gitignore/*
 build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+build.properties
+junit*.properties
+IgnoreLexer.java~
+.gradle
+.DS_Store
 
-### VS Code ###
-.vscode/
-/src/main/java/com/supersoft/projmanagment/ProjmanagmentApplication.java
+/verification
+
 
 ### Maven ###
 pom.xml.tag

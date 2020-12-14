@@ -28,8 +28,8 @@ class LoadDatabase {
     @Bean
     CommandLineRunner initUsers(UserRepository repository) {
         return args -> {
-            log.info("Preloading " + repository.save(new User("test1", "test1", "test1", "manager")));
-            log.info("Preloading " + repository.save(new User("test2", "test2", "test2", "executor")));
+            //log.info("Preloading " + repository.save(new User("test1", "test1", "test1", "manager")));
+            //log.info("Preloading " + repository.save(new User("test2", "test2", "test2", "executor")));
         };
     }
 
@@ -46,7 +46,7 @@ class LoadDatabase {
         Date finalDateStart = dateStart;
         Date finalDateEnd = dateEnd;
         return args -> {
-            log.info("Preloading " + repository.save(new Task("task1", "test1 task descr", true, "test2", finalDateStart, finalDateEnd)));
+            //log.info("Preloading " + repository.save(new Task("task1", "test1 task descr", true, "test2", finalDateStart, finalDateEnd)));
         };
     }
 
@@ -63,7 +63,7 @@ class LoadDatabase {
 
         Project project = new Project("project1", "1", finalDateStart, finalDateEnd);
         return args -> {
-            log.info("Preloading " + repository.save(project));
+            //log.info("Preloading " + repository.save(project));
         };
     }
 }

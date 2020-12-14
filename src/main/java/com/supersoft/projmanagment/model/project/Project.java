@@ -15,14 +15,14 @@ import java.util.Objects;
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    String idProject;
-    String projectName;
-    String idManager;
+    private String idProject;
+    private String projectName;
+    private String idManager;
 //    List<User> listOfUsers;
 //    List<Task> listOfTasks;
-    String description;
-    Date dateStart;
-    Date dateEnd;
+    private String description;
+    private Date dateStart;
+    private Date dateEnd;
 
 //    public Project(String projectName, String idManager, List<User> listOfUsers, List<Task> listOfTasks, String description, Date dateStart, Date dateEnd) {
 //        this.projectName = projectName;

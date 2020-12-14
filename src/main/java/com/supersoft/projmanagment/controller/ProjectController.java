@@ -18,14 +18,14 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 public class ProjectController {
-    public final ProjectRepository repository;
+    private final ProjectRepository repository;
 
     public ProjectController(ProjectRepository repository) {
         this.repository = repository;
     }
 
 
-
+/*
     @GetMapping("/project")
     CollectionModel<EntityModel<Project>> all() {
         List<EntityModel<Project>> projects = repository.findAll().
@@ -35,10 +35,39 @@ public class ProjectController {
                 collect(Collectors.toList());
         return CollectionModel.of(projects,
                 linkTo(methodOn(ProjectController.class).all()).withSelfRel());
+    }*/
+
+    @ResponseBody
+    @GetMapping("/checkProjects")
+    List<Project> all() {
+        return repository.findAll();
     }
 
-    @RequestMapping(value = "/CreateProject", method = RequestMethod.GET)//Не работает
-    Project createProject(@RequestBody Project newProject) {
+    @PostMapping("/CreateProject")
+    public @ResponseBody String newEmployee(@RequestParam String projectName, @RequestParam String idManager,
+                                            @RequestParam Date dateStart,@RequestParam Date dateEnd) {
+        String sDate = "01/12/2020";
+        String endDate = "31/12/2020";
+
+        try {
+            dateStart = new SimpleDateFormat("dd/MM/yyyy").parse(sDate);
+            dateEnd = new SimpleDateFormat("dd/MM/yyyy").parse(endDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Date finalDateStart = dateStart;
+        Date finalDateEnd = dateEnd;
+        Project newProject = new Project();
+        newProject.setProjectName(projectName);
+        newProject.setIdManager(idManager);
+        newProject.setDateStart(dateStart);
+        newProject.setDateEnd(dateEnd);
+        repository.save(newProject);
+        return "Saved";
+    }
+
+/*    @PostMapping(value = "/CreateProject")//Не работает
+    void createProject(@RequestBody Project newProject) {
         String sDate = "01/12/2020";
         String endDate = "31/12/2020";
         Date dateStart = null;
@@ -51,7 +80,7 @@ public class ProjectController {
         }
         Date finalDateStart = dateStart;
         Date finalDateEnd = dateEnd;
-        /*newProject = new Project("project1", "1", finalDateStart, finalDateEnd);*/
-        return repository.save(newProject);
-    }
+        *//*newProject = new Project("project1", "1", finalDateStart, finalDateEnd);*//*
+        repository.save(newProject);
+    }*/
 }

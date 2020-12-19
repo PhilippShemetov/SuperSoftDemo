@@ -1,4 +1,4 @@
-package com.supersoft.projmanagment.model.task;
+package com.supersoft.projmanagment.webserver.task;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

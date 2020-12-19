@@ -1,4 +1,4 @@
-package com.supersoft.projmanagment.model.user;
+package com.supersoft.projmanagment.webserver.users;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,16 +16,18 @@ public class User {
     private String login;
     private Boolean accepted; //Зарегестрирован или нет?
     private String userType;
+    private String password;
 
     public User() {
 
     }
 
-    public User(String firstName, String lastName, String login, String userType) {
+    public User(String firstName, String lastName, String login,String password, String userType) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;
         this.userType = userType;
+        this.password= password;
     }
 
     public String getFirstName() {

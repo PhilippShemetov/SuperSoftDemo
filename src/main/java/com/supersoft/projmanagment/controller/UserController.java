@@ -1,7 +1,7 @@
 package com.supersoft.projmanagment.controller;
 
-import com.supersoft.projmanagment.model.user.User;
-import com.supersoft.projmanagment.model.user.UserRepository;
+import com.supersoft.projmanagment.webserver.users.User;
+import com.supersoft.projmanagment.infrastructure.database.UserRepository;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.GetMapping;

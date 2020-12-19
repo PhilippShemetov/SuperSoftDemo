@@ -1,11 +1,10 @@
 package com.supersoft.projmanagment.model;
 
-import com.supersoft.projmanagment.model.project.Project;
-import com.supersoft.projmanagment.model.project.ProjectRepository;
-import com.supersoft.projmanagment.model.task.Task;
-import com.supersoft.projmanagment.model.task.TaskRepository;
-import com.supersoft.projmanagment.model.user.User;
-import com.supersoft.projmanagment.model.user.UserRepository;
+import com.supersoft.projmanagment.infrastructure.database.ProjectRepository;
+import com.supersoft.projmanagment.infrastructure.database.UserRepository;
+import com.supersoft.projmanagment.webserver.task.TaskRepository;
+import com.supersoft.projmanagment.webserver.users.User;
+import com.supersoft.projmanagment.webserver.projects.Project;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -28,8 +27,8 @@ class LoadDatabase {
     @Bean
     CommandLineRunner initUsers(UserRepository repository) {
         return args -> {
-            //log.info("Preloading " + repository.save(new User("test1", "test1", "test1", "manager")));
-            //log.info("Preloading " + repository.save(new User("test2", "test2", "test2", "executor")));
+            log.info("Preloading " + repository.save(new User("test1", "test1", "test1", "123", "manager")));
+            log.info("Preloading " + repository.save(new User("test2", "test2", "test2", "123", "executor")));
         };
     }
 
@@ -63,7 +62,7 @@ class LoadDatabase {
 
         Project project = new Project("project1", "1", finalDateStart, finalDateEnd);
         return args -> {
-            //log.info("Preloading " + repository.save(project));
+            //log.info("Preloading " + repository.save(projects));
         };
     }
 }

@@ -1,22 +1,16 @@
 package com.supersoft.projmanagment.controller;
 
-import com.supersoft.projmanagment.model.project.Project;
-import com.supersoft.projmanagment.model.project.ProjectRepository;
-import jdk.nashorn.internal.ir.PropertyKey;
-import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.EntityModel;
+import com.supersoft.projmanagment.webserver.projects.Project;
+import com.supersoft.projmanagment.infrastructure.database.ProjectRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
+@RequestMapping("manager")
 public class ProjectController {
     private final ProjectRepository repository;
 
@@ -26,26 +20,26 @@ public class ProjectController {
 
 
 /*
-    @GetMapping("/project")
+    @GetMapping("/projects")
     CollectionModel<EntityModel<Project>> all() {
         List<EntityModel<Project>> projects = repository.findAll().
-                stream().map(project -> EntityModel.of(project,
+                stream().map(projects -> EntityModel.of(projects,
 //                linkTo(methodOn(UserController.class).one(user.getId())).withSelfRel(),
-                linkTo(methodOn(ProjectController.class).all()).withRel("project"))).
+                linkTo(methodOn(ProjectController.class).all()).withRel("projects"))).
                 collect(Collectors.toList());
         return CollectionModel.of(projects,
                 linkTo(methodOn(ProjectController.class).all()).withSelfRel());
     }*/
-
     @ResponseBody
     @GetMapping("/checkProjects")
-    List<Project> all() {
+    List<Project> checkProjects() {
         return repository.findAll();
     }
 
+    @ResponseBody
     @PostMapping("/CreateProject")
-    public @ResponseBody String newEmployee(@RequestParam String projectName, @RequestParam String idManager,
-                                            @RequestParam Date dateStart,@RequestParam Date dateEnd) {
+    public String createProject(@RequestParam String projectName, @RequestParam String idManager,
+                                @RequestParam Date dateStart, @RequestParam Date dateEnd) {
         String sDate = "01/12/2020";
         String endDate = "31/12/2020";
 

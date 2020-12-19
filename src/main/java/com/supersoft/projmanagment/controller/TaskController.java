@@ -1,8 +1,7 @@
 package com.supersoft.projmanagment.controller;
 
-import com.supersoft.projmanagment.model.task.Task;
-import com.supersoft.projmanagment.model.task.TaskRepository;
-import com.supersoft.projmanagment.model.user.User;
+import com.supersoft.projmanagment.webserver.task.Task;
+import com.supersoft.projmanagment.webserver.task.TaskRepository;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.GetMapping;

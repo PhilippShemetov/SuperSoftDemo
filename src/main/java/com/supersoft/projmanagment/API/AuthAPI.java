@@ -1,6 +1,7 @@
 package com.supersoft.projmanagment.API;
 
 import com.supersoft.projmanagment.test.IService;
+import com.supersoft.projmanagment.test.LoginForm;
 import com.supersoft.projmanagment.webserver.kernel.Server;
 import com.supersoft.projmanagment.webserver.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,10 @@ public class AuthAPI {
     @Autowired
     private IService iService;
 
-    @ResponseBody
+
     @PostMapping()
-    public User login(@RequestParam String login, @RequestParam String password) {
-        return server.authHandler(login,password);
+    public User login(@RequestBody LoginForm log) {
+        return server.authHandler(log.login, log.password);
     }
 
     /*@ResponseBody

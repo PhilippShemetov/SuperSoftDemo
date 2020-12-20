@@ -61,6 +61,10 @@ class LoadDatabase {
         Date finalDateEnd = dateEnd;
 
         Project project = new Project("project1", "1", finalDateStart, finalDateEnd);
-        return args -> log.info("Preloading " + repository.save(project));
+        Project project2 = new Project("project2", "1", finalDateStart, finalDateEnd);
+        return args -> {
+            log.info("Preloading " + repository.save(project));
+            log.info("Preloading " + repository.save(project2));
+        };
     }
 }

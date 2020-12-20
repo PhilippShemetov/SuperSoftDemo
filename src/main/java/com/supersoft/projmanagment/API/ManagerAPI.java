@@ -27,6 +27,12 @@ public class ManagerAPI {
     }
 
     @ResponseBody
+    @GetMapping("/projects/check")
+    List<Project> checkProjectAll() {
+        return server.startManagerHandler();
+    }
+
+    @ResponseBody
     @PostMapping("/projects/create")
     public String createProject(@RequestParam String projectName, @RequestParam String idManager, @RequestParam String description,
                                 @RequestParam Date dateStart, @RequestParam Date dateEnd, @RequestParam List<User> listOfUsers) {

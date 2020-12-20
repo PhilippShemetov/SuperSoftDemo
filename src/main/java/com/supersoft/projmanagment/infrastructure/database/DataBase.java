@@ -65,6 +65,6 @@ public class DataBase implements IDataBase {
 
     @Override
     public List<Project> showAllProject() {
-        return null;
+        return projReository.findAll();
     }
 }

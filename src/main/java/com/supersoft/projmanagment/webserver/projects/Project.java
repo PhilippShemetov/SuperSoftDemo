@@ -15,8 +15,8 @@ public class Project {
     private String idProject;
     private String projectName;
     private String idManager;
-    @OneToMany(mappedBy = "User", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    List<User> listOfUsers; //Error TODO...
+    /*@OneToMany(mappedBy = "User", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<User> listOfUsers; //Error TODO...*/
 //    List<Task> listOfTasks;
     private String description;
     private Date dateStart;
@@ -25,7 +25,7 @@ public class Project {
     public Project(String projectName, String idManager, List<User> listOfUsers, String description, Date dateStart, Date dateEnd) {
         this.projectName = projectName;
         this.idManager = idManager;
-        this.listOfUsers = listOfUsers;
+        //this.listOfUsers = listOfUsers;
         this.description = description;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;

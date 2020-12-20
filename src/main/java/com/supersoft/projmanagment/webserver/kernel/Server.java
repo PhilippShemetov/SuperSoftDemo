@@ -36,8 +36,8 @@ public class Server {
         mngHandler.createNewProject(projectName, idManager, description, dateStart, dateEnd, listOfUsers);
     }
 
-    public void startManagerHandler() {
-
+    public List<Project> startManagerHandler() {
+        return mngHandler.checkProjectAll();
     }
 
     public User authHandler(String login, String password) {

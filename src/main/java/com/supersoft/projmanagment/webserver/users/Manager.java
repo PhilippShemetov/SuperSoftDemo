@@ -22,4 +22,9 @@ public class Manager implements IManager {
     public void createNewProject(String projectName, String idManager,String description, Date dateStart, Date dateEnd, List<User> listOfUsers) {
         iDataBase.createNewProject(projectName, idManager, description, dateStart, dateEnd, listOfUsers);
     }
+
+    @Override
+    public List<Project> checkProjectAll() {
+        return iDataBase.showAllProject();
+    }
 }

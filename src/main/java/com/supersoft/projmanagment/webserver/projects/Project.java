@@ -16,7 +16,7 @@ public class Project {
     private String projectName;
     private String idManager;
     @OneToMany(mappedBy = "User", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    List<User> listOfUsers;
+    List<User> listOfUsers; //Error TODO...
 //    List<Task> listOfTasks;
     private String description;
     private Date dateStart;

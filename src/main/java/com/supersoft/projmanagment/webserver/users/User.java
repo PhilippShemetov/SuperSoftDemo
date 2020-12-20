@@ -1,9 +1,6 @@
 package com.supersoft.projmanagment.webserver.users;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -22,7 +19,7 @@ public class User {
 
     }
 
-    public User(String firstName, String lastName, String login,String password, String userType) {
+    public User(String firstName, String lastName, String login, String password, String userType) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;
@@ -52,6 +49,14 @@ public class User {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Boolean getAccepted() {

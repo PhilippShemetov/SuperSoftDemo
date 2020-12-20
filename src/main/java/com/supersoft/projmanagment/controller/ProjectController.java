@@ -1,45 +1,54 @@
 package com.supersoft.projmanagment.controller;
 
-import com.supersoft.projmanagment.webserver.projects.Project;
-import com.supersoft.projmanagment.infrastructure.database.ProjectRepository;
+/*import com.supersoft.projmanagment.model.project.Project;
+import com.supersoft.projmanagment.model.project.ProjectRepository;
+import jdk.nashorn.internal.ir.PropertyKey;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;*/
+
+/*
 @RestController
-@RequestMapping("manager")
 public class ProjectController {
     private final ProjectRepository repository;
 
     public ProjectController(ProjectRepository repository) {
         this.repository = repository;
     }
+*/
 
 
 /*
-    @GetMapping("/projects")
+    @GetMapping("/project")
     CollectionModel<EntityModel<Project>> all() {
         List<EntityModel<Project>> projects = repository.findAll().
-                stream().map(projects -> EntityModel.of(projects,
+                stream().map(project -> EntityModel.of(project,
 //                linkTo(methodOn(UserController.class).one(user.getId())).withSelfRel(),
-                linkTo(methodOn(ProjectController.class).all()).withRel("projects"))).
+                linkTo(methodOn(ProjectController.class).all()).withRel("project"))).
                 collect(Collectors.toList());
         return CollectionModel.of(projects,
                 linkTo(methodOn(ProjectController.class).all()).withSelfRel());
     }*/
+
+/*
     @ResponseBody
     @GetMapping("/checkProjects")
-    List<Project> checkProjects() {
+    List<Project> all() {
         return repository.findAll();
     }
 
-    @ResponseBody
     @PostMapping("/CreateProject")
-    public String createProject(@RequestParam String projectName, @RequestParam String idManager,
-                                @RequestParam Date dateStart, @RequestParam Date dateEnd) {
+    public @ResponseBody String newEmployee(@RequestParam String projectName, @RequestParam String idManager,
+                                            @RequestParam Date dateStart,@RequestParam Date dateEnd) {
         String sDate = "01/12/2020";
         String endDate = "31/12/2020";
 
@@ -59,6 +68,7 @@ public class ProjectController {
         repository.save(newProject);
         return "Saved";
     }
+*/
 
 /*    @PostMapping(value = "/CreateProject")//Не работает
     void createProject(@RequestBody Project newProject) {
@@ -77,4 +87,4 @@ public class ProjectController {
         *//*newProject = new Project("project1", "1", finalDateStart, finalDateEnd);*//*
         repository.save(newProject);
     }*/
-}
+/*}*/

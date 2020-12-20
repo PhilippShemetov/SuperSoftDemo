@@ -1,11 +1,14 @@
 package com.supersoft.projmanagment.infrastructure.database;
 
+import com.supersoft.projmanagment.controller.ProjectNotFoundException;
 import com.supersoft.projmanagment.webserver.users.User;
 import com.supersoft.projmanagment.webserver.projects.Project;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -15,6 +18,9 @@ public class DataBase implements IDataBase {
 
     @Autowired
     private UserRepository repository;
+
+    @Autowired
+    private ProjectRepository projReository;
 
 //    public DataBase(UserRepository repository) {
 //        this.repository = repository;
@@ -37,8 +43,9 @@ public class DataBase implements IDataBase {
     }
 
     @Override
-    public Boolean createNewProject() {
-        return null;
+    public void createNewProject(String projectName, String idManager, String description, Date dateStart, Date dateEnd, List<User> listOfUsers) {
+        Project proj = new Project(projectName, idManager,  listOfUsers, description, dateStart, dateEnd);
+        projReository.save(proj);
     }
 
     @Override
@@ -47,8 +54,8 @@ public class DataBase implements IDataBase {
     }
 
     @Override
-    public Project checkProject() {
-        return null;
+    public Project checkProject(String id) {
+        return projReository.findById(id).orElseThrow(() -> new ProjectNotFoundException(id));
     }
 
     @Override

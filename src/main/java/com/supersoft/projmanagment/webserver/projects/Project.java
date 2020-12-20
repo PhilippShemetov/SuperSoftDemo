@@ -1,10 +1,11 @@
 package com.supersoft.projmanagment.webserver.projects;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.supersoft.projmanagment.webserver.users.User;
+
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -14,21 +15,21 @@ public class Project {
     private String idProject;
     private String projectName;
     private String idManager;
-//    List<User> listOfUsers;
+    @OneToMany(mappedBy = "User", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<User> listOfUsers;
 //    List<Task> listOfTasks;
     private String description;
     private Date dateStart;
     private Date dateEnd;
 
-//    public Project(String projectName, String idManager, List<User> listOfUsers, List<Task> listOfTasks, String description, Date dateStart, Date dateEnd) {
-//        this.projectName = projectName;
-//        this.idManager = idManager;
-//        this.listOfUsers = listOfUsers;
-//        this.listOfTasks = listOfTasks;
-//        this.description = description;
-//        this.dateStart = dateStart;
-//        this.dateEnd = dateEnd;
-//    }
+    public Project(String projectName, String idManager, List<User> listOfUsers, String description, Date dateStart, Date dateEnd) {
+        this.projectName = projectName;
+        this.idManager = idManager;
+        this.listOfUsers = listOfUsers;
+        this.description = description;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+    }
     public Project(){
 
     }

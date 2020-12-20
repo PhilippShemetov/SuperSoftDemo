@@ -1,6 +1,7 @@
 package com.supersoft.projmanagment.webserver.users;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity

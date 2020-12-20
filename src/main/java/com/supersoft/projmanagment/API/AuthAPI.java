@@ -25,9 +25,9 @@ public class AuthAPI {
         return server.authHandler(login,password);
     }
 
-    @ResponseBody
+    /*@ResponseBody
     @GetMapping()
     public List<User> login() {
         return iService.findAll();
-    }
+    }*/
 }

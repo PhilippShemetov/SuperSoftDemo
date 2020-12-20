@@ -28,13 +28,7 @@ public class DataBase implements IDataBase {
 
     @Override
     public User getUser(String login, String password) {
-        return repository.findAll().get(0);
-//
-//        User user = repository.findByLoginAndPassword(login, password);
-//        if (user == null) {
-//            throw new NullPointerException("User has not found");
-//        }
-//        return user;
+        return repository.findByLoginAndPassword(login,password);
     }
 
     @Override

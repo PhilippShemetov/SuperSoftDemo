@@ -1,6 +1,5 @@
 package com.supersoft.projmanagment.API;
 
-import com.supersoft.projmanagment.test.LoginForm;
 import com.supersoft.projmanagment.webserver.kernel.Server;
 import com.supersoft.projmanagment.webserver.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +13,9 @@ public class AuthAPI {
     private Server server;
 
 
-//    @PostMapping()
-//    public User login(@RequestBody LoginForm log) {
-//        return server.authHandler(log.login, log.password);
-//    }
     @PostMapping()
-    public User login(@RequestBody String login, @RequestBody String password) {
-        return server.authHandler(login, password);
+    public User login(@RequestBody User log) {
+        return server.authHandler(log.getLogin(), log.getPassword());
     }
 
 

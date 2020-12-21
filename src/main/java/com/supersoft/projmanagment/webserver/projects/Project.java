@@ -11,18 +11,18 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "projects")
+//@Table(name = "projects")
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_project")
+    //@Column(name = "id_project")
     private Long idProject;
 
-    @Column(name = "project_name")
+    //@Column(name = "project_name")
     private String projectName;
 
 //    @OneToOne(cascade = CascadeType.ALL)
-    @Column(name = "id_manager")
+    //@Column(name = "id_manager")
     private Long idManager;
 //    private String users = "1 ,2 ,3, 4";
 //    @OneToMany(mappedBy = "projects", cascade = CascadeType.ALL)
@@ -41,10 +41,10 @@ public class Project {
 
     private String description;
 
-    @Column(name = "date_start")
+    //@Column(name = "date_start")
     private Date dateStart;
 
-    @Column(name = "date_end")
+    //@Column(name = "date_end")
     private Date dateEnd;
 
     public Project(String projectName, Long idManager, List<User> listOfUsers, String description, Date dateStart, Date dateEnd) {

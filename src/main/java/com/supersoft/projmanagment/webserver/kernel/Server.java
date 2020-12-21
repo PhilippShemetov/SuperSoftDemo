@@ -28,11 +28,11 @@ public class Server {
         return instance;
     }
 
-    public Project startManagerHandler(String id) {
+    public Project startManagerHandler(Long id) {
         return mngHandler.checkProject(id);
     }
 
-    public void startManagerHandlerDelete(String id) {
+    public void startManagerHandlerDelete(Long id) {
         mngHandler.deleteProject(id);
     }
 

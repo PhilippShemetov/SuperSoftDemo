@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface IManager {
     void createNewProject(String projectName, Long idManager, String description, Date dateStart, Date dateEnd);
-    Project checkProject(String id);
+    Project checkProject(Long id);
     List<Project> checkProjectAll();
-    void deleteProject(String id);
+    void deleteProject(Long id);
 //    void editProject();
 //    void showAllProject();
 //    void createTask();

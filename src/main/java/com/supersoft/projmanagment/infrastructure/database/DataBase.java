@@ -21,7 +21,7 @@ public class DataBase implements IDataBase {
     private UserRepository repository;
 
     @Autowired
-    private ProjectRepository projReository;
+    private ProjectRepository projRepository;
 
 //    public DataBase(UserRepository repository) {
 //        this.repository = repository;
@@ -40,13 +40,15 @@ public class DataBase implements IDataBase {
     @Override
     public void createNewProject(String projectName, Long idManager, String description, Date dateStart, Date dateEnd) {
         Project proj = new Project(projectName, idManager, description, dateStart, dateEnd);
-        projReository.save(proj);
+        projRepository.save(proj);
         logger.info("save - "  + proj);
     }
 
     @Override
-    public void deleteProject(String id) {
-        projReository.deleteById(id);
+    public void deleteProject(Long id) {
+        checkProject(id);
+        projRepository.deleteById(id);
+        logger.info("project with id " + id + " has deleted");
     }
 
     @Override
@@ -55,8 +57,8 @@ public class DataBase implements IDataBase {
     }
 
     @Override
-    public Project checkProject(String id) {
-        return projReository.findById(id).orElseThrow(() -> new ProjectNotFoundException(id));
+    public Project checkProject(Long id) {
+        return projRepository.findById(id).orElseThrow(() -> new ProjectNotFoundException(id.toString()));
     }
 
     @Override
@@ -66,6 +68,6 @@ public class DataBase implements IDataBase {
 
     @Override
     public List<Project> showAllProject() {
-        return projReository.findAll();
+        return projRepository.findAll();
     }
 }

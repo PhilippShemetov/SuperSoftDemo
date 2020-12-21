@@ -14,7 +14,7 @@ public class Manager implements IManager {
     private IDataBase iDataBase;
 
     @Override
-    public Project checkProject(String id) {
+    public Project checkProject(Long id) {
         return iDataBase.checkProject(id);
     }
 
@@ -24,7 +24,7 @@ public class Manager implements IManager {
     }
 
     @Override
-    public void deleteProject(String id) {
+    public void deleteProject(Long id) {
         iDataBase.deleteProject(id);
     }
 

@@ -22,7 +22,7 @@ public class ManagerAPI {
 
     @ResponseBody
     @GetMapping("/projects/check/{id}")
-    Project checkProject(@PathVariable String id) {
+    Project checkProject(@PathVariable Long id) {
         return server.startManagerHandler(id);
     }
 
@@ -67,7 +67,7 @@ public class ManagerAPI {
     }
 
     @DeleteMapping("/projects/delete/{id}")
-    void deleteEmployee(@PathVariable String id) {
+    void deleteEmployee(@PathVariable Long id) {
         server.startManagerHandlerDelete(id);
     }
 

@@ -1,6 +1,5 @@
 package com.supersoft.projmanagment.infrastructure.database;
 
-import com.supersoft.projmanagment.webserver.task.TaskRepository;
 import com.supersoft.projmanagment.webserver.users.User;
 import com.supersoft.projmanagment.webserver.projects.Project;
 import org.slf4j.Logger;
@@ -43,7 +42,7 @@ class LoadDatabase {
         Date finalDateStart = dateStart;
         Date finalDateEnd = dateEnd;
         return args -> {
-            //log.info("Preloading " + repository.save(new Task("task1", "test1 task descr", true, "test2", finalDateStart, finalDateEnd)));
+            //log.info("Preloading " + repository.save(new Task("task1", "test1 tasks descr", true, "test2", finalDateStart, finalDateEnd)));
         };
     }
 

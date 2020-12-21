@@ -1,4 +1,4 @@
-package com.supersoft.projmanagment.webserver.task;
+package com.supersoft.projmanagment.webserver.tasks;
 
 import javax.persistence.*;
 import java.util.Date;

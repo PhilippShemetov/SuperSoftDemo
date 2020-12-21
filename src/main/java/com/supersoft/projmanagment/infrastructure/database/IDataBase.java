@@ -10,8 +10,8 @@ public interface IDataBase {
     Boolean createUser();
     void createNewProject(String projectName, Long idManager, String description, Date dateStart, Date dateEnd);
     Boolean createTask();
-    Project checkProject(String id);
-    void deleteProject(String id);
+    Project checkProject(Long id);
+    void deleteProject(Long id);
     Boolean updateProject();
     List<Project> showAllProject();
 

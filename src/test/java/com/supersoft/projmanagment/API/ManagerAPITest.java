@@ -2,12 +2,10 @@ package com.supersoft.projmanagment.API;
 
 import com.supersoft.projmanagment.infrastructure.database.ProjectRepository;
 import com.supersoft.projmanagment.webserver.projects.Project;
+import com.supersoft.projmanagment.webserver.projects.ProjectNotFoundException;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.web.servlet.MockMvc;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.text.ParseException;
@@ -23,6 +21,10 @@ public class ManagerAPITest {
     @Autowired
     private ProjectRepository projRepository;
 
+    private final String sDate = "01/12/2020";
+    private final String endDate = "31/12/2020";
+    private Date dateStart = null;
+    private Date dateEnd = null;
 
     @Test
     public void contextLoads() throws Exception {
@@ -33,10 +35,6 @@ public class ManagerAPITest {
     @Test
     public void createAndCheckProjectTest() throws Exception{
 
-        String sDate = "01/12/2020";
-        String endDate = "31/12/2020";
-        Date dateStart = null;
-        Date dateEnd = null;
         try {
             dateStart = new SimpleDateFormat("dd/MM/yyyy").parse(sDate);
             dateEnd = new SimpleDateFormat("dd/MM/yyyy").parse(endDate);
@@ -53,10 +51,21 @@ public class ManagerAPITest {
     }
 
     @Test
-    public void deleteProjectTest() throws Exception{
+    public void deleteProjectTest() throws ProjectNotFoundException {
 
-//        Mockito.when(mngApi.deleteProject(1L)).thenReturn("SUCCES");
-//        assertThat();
+        try {
+            dateStart = new SimpleDateFormat("dd/MM/yyyy").parse(sDate);
+            dateEnd = new SimpleDateFormat("dd/MM/yyyy").parse(endDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Date finalDateStart = dateStart;
+        Date finalDateEnd = dateEnd;
+        Project proj = new Project("TestProj",1L,"hello",finalDateStart,finalDateEnd);
+        mngApi.createProject(proj);
+        mngApi.deleteProject(1L);
+        assertThat(projRepository.existsById(1L) == false);
+
 
 
     }

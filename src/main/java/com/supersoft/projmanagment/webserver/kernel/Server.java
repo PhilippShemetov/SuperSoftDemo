@@ -32,8 +32,12 @@ public class Server {
         return mngHandler.checkProject(id);
     }
 
-    public void startManagerHandler(String projectName, String idManager, String description, Date dateStart, Date dateEnd, List<User> listOfUsers) {
-        mngHandler.createNewProject(projectName, idManager, description, dateStart, dateEnd, listOfUsers);
+    public void startManagerHandlerDelete(String id) {
+        mngHandler.deleteProject(id);
+    }
+
+    public void startManagerHandler(String projectName, Long idManager, String description, Date dateStart, Date dateEnd) {
+        mngHandler.createNewProject(projectName, idManager, description, dateStart, dateEnd);
     }
 
     public List<Project> startManagerHandler() {

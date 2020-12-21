@@ -4,25 +4,50 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.supersoft.projmanagment.webserver.users.User;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table(name = "projects")
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String idProject;
+    @Column(name = "id_project")
+    private Long idProject;
+
+    @Column(name = "project_name")
     private String projectName;
-    private String idManager;
-    /*@OneToMany(mappedBy = "User", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    List<User> listOfUsers; //Error TODO...*/
+
+//    @OneToOne(cascade = CascadeType.ALL)
+    @Column(name = "id_manager")
+    private Long idManager;
+//    private String users = "1 ,2 ,3, 4";
+//    @OneToMany(mappedBy = "projects", cascade = CascadeType.ALL)
+//    List<User> listOfUsers = new ArrayList<>();
 //    List<Task> listOfTasks;
+    //*************************
+
+//    List<User> listOfUsers;
+//    @OneToMany(mappedBy = "User")
+//    public List<User> getObjectList() {
+//        return listOfUsers;
+//    }
+
+
+    //*************************
+
     private String description;
+
+    @Column(name = "date_start")
     private Date dateStart;
+
+    @Column(name = "date_end")
     private Date dateEnd;
 
-    public Project(String projectName, String idManager, List<User> listOfUsers, String description, Date dateStart, Date dateEnd) {
+    public Project(String projectName, Long idManager, List<User> listOfUsers, String description, Date dateStart, Date dateEnd) {
         this.projectName = projectName;
         this.idManager = idManager;
         //this.listOfUsers = listOfUsers;
@@ -34,9 +59,10 @@ public class Project {
 
     }
 
-    public Project(String projectName, String idManager, Date dateStart, Date dateEnd) {
+    public Project(String projectName, Long idManager, String description, Date dateStart, Date dateEnd) {
         this.projectName = projectName;
         this.idManager = idManager;
+        this.description = description;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
     }
@@ -49,19 +75,19 @@ public class Project {
         this.projectName = projectName;
     }
 
-    public String getIdProject() {
+    public Long getIdProject() {
         return idProject;
     }
 
-    public void setIdProject(String idProject) {
+    public void setIdProject(Long idProject) {
         this.idProject = idProject;
     }
 
-    public String getIdManager() {
+    public Long getIdManager() {
         return idManager;
     }
 
-    public void setIdManager(String idManager) {
+    public void setIdManager(Long idManager) {
         this.idManager = idManager;
     }
 

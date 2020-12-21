@@ -19,8 +19,13 @@ public class Manager implements IManager {
     }
 
     @Override
-    public void createNewProject(String projectName, String idManager,String description, Date dateStart, Date dateEnd, List<User> listOfUsers) {
-        iDataBase.createNewProject(projectName, idManager, description, dateStart, dateEnd, listOfUsers);
+    public void createNewProject(String projectName, Long idManager,String description, Date dateStart, Date dateEnd) {
+        iDataBase.createNewProject(projectName, idManager, description, dateStart, dateEnd);
+    }
+
+    @Override
+    public void deleteProject(String id) {
+        iDataBase.deleteProject(id);
     }
 
     @Override

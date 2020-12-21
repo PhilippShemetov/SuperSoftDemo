@@ -7,9 +7,10 @@ import java.util.Date;
 import java.util.List;
 
 public interface IManager {
-    void createNewProject(String projectName, String idManager, String description, Date dateStart, Date dateEnd, List<User> listOfUsers);
+    void createNewProject(String projectName, Long idManager, String description, Date dateStart, Date dateEnd);
     Project checkProject(String id);
     List<Project> checkProjectAll();
+    void deleteProject(String id);
 //    void editProject();
 //    void showAllProject();
 //    void createTask();

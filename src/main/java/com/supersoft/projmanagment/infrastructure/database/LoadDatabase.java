@@ -1,7 +1,5 @@
-package com.supersoft.projmanagment.model;
+package com.supersoft.projmanagment.infrastructure.database;
 
-import com.supersoft.projmanagment.infrastructure.database.ProjectRepository;
-import com.supersoft.projmanagment.infrastructure.database.UserRepository;
 import com.supersoft.projmanagment.webserver.task.TaskRepository;
 import com.supersoft.projmanagment.webserver.users.User;
 import com.supersoft.projmanagment.webserver.projects.Project;
@@ -60,8 +58,8 @@ class LoadDatabase {
         Date finalDateStart = dateStart;
         Date finalDateEnd = dateEnd;
 
-        Project project = new Project("project1", "1", finalDateStart, finalDateEnd);
-        Project project2 = new Project("project2", "1", finalDateStart, finalDateEnd);
+        Project project = new Project("project1", 1L,"allo", finalDateStart, finalDateEnd);
+        Project project2 = new Project("project2", 1L,"hello", finalDateStart, finalDateEnd);
         return args -> {
             log.info("Preloading " + repository.save(project));
             log.info("Preloading " + repository.save(project2));

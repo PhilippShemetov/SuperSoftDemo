@@ -1,12 +1,13 @@
 package com.supersoft.projmanagment.infrastructure.database;
 
-import com.supersoft.projmanagment.controller.ProjectNotFoundException;
-import com.supersoft.projmanagment.webserver.users.User;
+import com.supersoft.projmanagment.API.ManagerAPI;
 import com.supersoft.projmanagment.webserver.projects.Project;
-import javassist.NotFoundException;
+import com.supersoft.projmanagment.webserver.projects.ProjectNotFoundException;
+import com.supersoft.projmanagment.webserver.users.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 import java.util.List;
@@ -14,8 +15,8 @@ import java.util.List;
 @Service
 public class DataBase implements IDataBase {
 
-    private static IDataBase instance;
-
+    //    private static IDataBase instance;
+    Logger logger = LoggerFactory.getLogger(ManagerAPI.class);
     @Autowired
     private UserRepository repository;
 
@@ -28,7 +29,7 @@ public class DataBase implements IDataBase {
 
     @Override
     public User getUser(String login, String password) {
-        return repository.findByLoginAndPassword(login,password);
+        return repository.findByLoginAndPassword(login, password);
     }
 
     @Override
@@ -37,9 +38,15 @@ public class DataBase implements IDataBase {
     }
 
     @Override
-    public void createNewProject(String projectName, String idManager, String description, Date dateStart, Date dateEnd, List<User> listOfUsers) {
-        Project proj = new Project(projectName, idManager,  listOfUsers, description, dateStart, dateEnd);
+    public void createNewProject(String projectName, Long idManager, String description, Date dateStart, Date dateEnd) {
+        Project proj = new Project(projectName, idManager, description, dateStart, dateEnd);
         projReository.save(proj);
+        logger.info("save - "  + proj);
+    }
+
+    @Override
+    public void deleteProject(String id) {
+        projReository.deleteById(id);
     }
 
     @Override

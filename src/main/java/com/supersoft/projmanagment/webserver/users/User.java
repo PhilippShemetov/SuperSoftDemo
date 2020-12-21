@@ -1,20 +1,36 @@
 package com.supersoft.projmanagment.webserver.users;
 
+import com.supersoft.projmanagment.webserver.projects.Project;
+
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String idUser;
+    @Column(name = "id_user")
+    private Long idUser;
+
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
+
     private String login;
+
     private Boolean accepted; //Зарегестрирован или нет?
+
+    @Column(name = "user_type")
     private String userType;
+
     private String password;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "id_user",referencedColumnName = "id_project")
+//    private Project projects;
+
 
     public User() {
 
@@ -25,7 +41,7 @@ public class User {
         this.lastName = lastName;
         this.login = login;
         this.userType = userType;
-        this.password= password;
+        this.password = password;
     }
 
     public String getFirstName() {
@@ -68,11 +84,11 @@ public class User {
         this.accepted = accepted;
     }
 
-    public String getIdUser() {
+    public Long getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(String idUser) {
+    public void setIdUser(Long idUser) {
         this.idUser = idUser;
     }
 

@@ -1,23 +1,32 @@
 package com.supersoft.projmanagment.webserver.task;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
+@Table(name = "tasks")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    String taskId;
+    @Column(name = "task_id")
+    Long taskId;
 
+    @Column(name = "task_name")
     String taskName;
+
     String description;
+
+    @Column(name = "task_status")
     Boolean taskStatus;
+
+    @Column(name = "assigned_to")
     String assignedTo;
+
+    @Column(name = "date_start")
     Date dateStart;
+
+    @Column(name = "date_end")
     Date dateEnd;
 
     public Task() {
@@ -56,11 +65,11 @@ public class Task {
         this.taskStatus = taskStatus;
     }
 
-    public String getTaskId() {
+    public Long getTaskId() {
         return taskId;
     }
 
-    public void setTaskId(String taskId) {
+    public void setTaskId(Long taskId) {
         this.taskId = taskId;
     }
 

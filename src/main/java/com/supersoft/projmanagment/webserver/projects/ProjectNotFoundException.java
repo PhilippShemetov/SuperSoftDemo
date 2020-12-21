@@ -1,4 +1,4 @@
-package com.supersoft.projmanagment.controller;
+package com.supersoft.projmanagment.webserver.projects;
 
 public class ProjectNotFoundException extends RuntimeException {
 

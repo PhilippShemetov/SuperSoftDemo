@@ -8,9 +8,10 @@ import java.util.List;
 public interface IDataBase {
     User getUser(String login,String password);
     Boolean createUser();
-    void createNewProject(String projectName, String idManager, String description, Date dateStart, Date dateEnd, List<User> listOfUsers);
+    void createNewProject(String projectName, Long idManager, String description, Date dateStart, Date dateEnd);
     Boolean createTask();
     Project checkProject(String id);
+    void deleteProject(String id);
     Boolean updateProject();
     List<Project> showAllProject();
 

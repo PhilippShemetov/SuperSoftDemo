@@ -60,8 +60,8 @@ class LoadDatabase {
         Project project = new Project("project1", 1L,"allo", finalDateStart, finalDateEnd);
         Project project2 = new Project("project2", 1L,"hello", finalDateStart, finalDateEnd);
         return args -> {
-            log.info("Preloading " + repository.save(project));
-            log.info("Preloading " + repository.save(project2));
+            //log.info("Preloading " + repository.save(project));
+            //log.info("Preloading " + repository.save(project2));
         };
     }
 }

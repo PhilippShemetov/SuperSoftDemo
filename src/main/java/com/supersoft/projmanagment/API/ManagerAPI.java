@@ -37,7 +37,7 @@ public class ManagerAPI {
     }
 
     @DeleteMapping("/projects/delete/{id}")
-    void deleteEmployee(@PathVariable Long id) {
+    void deleteProject(@PathVariable Long id) {
         server.startManagerHandlerDelete(id);
     }
 

@@ -40,14 +40,15 @@ public class ManagerAPI {
     @ResponseBody
     @PostMapping("/task/create")
     public void createTask(@RequestBody Task task) {
-        server.startManagerHandler(task.getTaskName(), task.getDescription(),
-                task.getTaskStatus(), task.getAssignedTo(), task.getDateStart(),task.getDateEnd());
+        server.startManagerHandler(task);
     }
 
     @DeleteMapping("/projects/delete/{id}")
     void deleteProject(@PathVariable Long id) {
         server.startManagerHandlerDelete(id);
     }
+
+    //TODO
 
 
 }

@@ -19,7 +19,7 @@ public class DataBase implements IDataBase {
     //    private static IDataBase instance;
     Logger logger = LoggerFactory.getLogger(ManagerAPI.class);
     @Autowired
-    private UserRepository repository;
+    private UserRepository userRepository;
 
     @Autowired
     private ProjectRepository projRepository;
@@ -33,7 +33,7 @@ public class DataBase implements IDataBase {
 
     @Override
     public User getUser(String login, String password) {
-        return repository.findByLoginAndPassword(login, password);
+        return userRepository.findByLoginAndPassword(login, password);
     }
 
     @Override
@@ -49,9 +49,10 @@ public class DataBase implements IDataBase {
     }
 
     @Override
-    public void createTask(String taskName, String description, Boolean taskStatus, String assignedTo, Date dateStart, Date dateEnd) {
-        /*Моя идея заключается в том, что при создание задачи, нам нужно передать id проекта,
-        * но как получить id проекта мне еще не известно в плане логики. Через аргумент?*/
+    public void createTask(Task task) {
+        Project project =  projRepository.getOne(task.getIdProject());
+        task.setProject(project);
+        taskRepository.save(task);
     }
 
     @Override

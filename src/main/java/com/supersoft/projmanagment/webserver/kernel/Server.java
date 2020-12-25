@@ -2,6 +2,7 @@ package com.supersoft.projmanagment.webserver.kernel;
 
 import com.supersoft.projmanagment.infrastructure.database.IDataBase;
 import com.supersoft.projmanagment.webserver.projects.Project;
+import com.supersoft.projmanagment.webserver.tasks.Task;
 import com.supersoft.projmanagment.webserver.users.IManager;
 import com.supersoft.projmanagment.webserver.users.User;
 import com.supersoft.projmanagment.webserver.users.auth.Authorisation;
@@ -40,8 +41,8 @@ public class Server {
         mngHandler.createNewProject(projectName, idManager, description, dateStart, dateEnd);
     }
 
-    public void startManagerHandler(String taskName, String description, Boolean taskStatus, String assignedTo, Date dateStart, Date dateEnd) {
-        mngHandler.createTask(taskName,description,taskStatus, assignedTo, dateStart, dateEnd);
+    public void startManagerHandler(Task task) {
+        mngHandler.createTask(task);
     }
 
     public List<Project> startManagerHandler() {

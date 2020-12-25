@@ -2,6 +2,7 @@ package com.supersoft.projmanagment.webserver.users;
 
 import com.supersoft.projmanagment.infrastructure.database.IDataBase;
 import com.supersoft.projmanagment.webserver.projects.Project;
+import com.supersoft.projmanagment.webserver.tasks.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +30,8 @@ public class Manager implements IManager {
     }
 
     @Override
-    public void createTask(String taskName, String description, Boolean taskStatus, String assignedTo, Date dateStart, Date dateEnd) {
-        iDataBase.createTask(taskName,description,taskStatus, assignedTo, dateStart, dateEnd);
+    public void createTask(Task task) {
+        iDataBase.createTask(task);
     }
 
     @Override

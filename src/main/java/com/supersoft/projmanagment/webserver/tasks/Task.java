@@ -1,6 +1,9 @@
 package com.supersoft.projmanagment.webserver.tasks;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.supersoft.projmanagment.infrastructure.database.ProjectRepository;
 import com.supersoft.projmanagment.webserver.projects.Project;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -31,28 +34,50 @@ public class Task {
     //@Column(name = "date_end")
     Date dateEnd;
 
-    @ManyToOne(/*fetch = FetchType.LAZY*/)
+    @JsonIgnore
+    @ManyToOne(/*fetch = FetchType.LAZY*/cascade = CascadeType.ALL)
     @JoinColumn(name = "id_project")
-    private Task task;
+    private Project project;
+
+    @Column(name = "id_project", insertable = false, updatable = false)
+    private Long idProject;
+
 
     public Task() {
 
     }
-    public Task(String taskName, String description, Boolean taskStatus, String assignedTo, Date dateStart, Date dateEnd) {
+    public Task(String taskName, String description, Boolean taskStatus, String assignedTo, Date dateStart, Date dateEnd,Long idProject) {
         this.taskName = taskName;
         this.description = description;
         this.taskStatus = taskStatus;
         this.assignedTo = assignedTo;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
+        this.idProject = idProject;
     }
 
-    public Task getTask() {
-        return task;
+    public Long getIdProject() {
+        return idProject;
     }
 
-    public void setTask(Task task) {
-        this.task = task;
+    public void setIdProject(Long idProject) {
+        this.idProject = idProject;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public Project getTask() {
+        return project;
+    }
+
+    public void setTask(Project task) {
+        this.project = task;
     }
 
     public String getTaskName() {

@@ -1,5 +1,6 @@
 package com.supersoft.projmanagment.webserver.projects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.supersoft.projmanagment.webserver.tasks.Task;
 import com.supersoft.projmanagment.webserver.users.User;
@@ -30,7 +31,7 @@ public class Project {
     orphanRemoval = true)
     List<User> listOfUsers = new ArrayList<>();
 
-    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL,
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL,
             orphanRemoval = true)
     List<Task> listOfTasks = new ArrayList<>();
 
@@ -52,6 +53,9 @@ public class Project {
     }
     public Project(){
 
+    }
+    public Project(Long idProject){
+        setIdProject(idProject);
     }
 
     public Project(String projectName, Long idManager, String description, Date dateStart, Date dateEnd) {

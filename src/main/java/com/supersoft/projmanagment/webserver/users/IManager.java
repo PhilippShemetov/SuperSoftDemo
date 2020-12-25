@@ -1,6 +1,7 @@
 package com.supersoft.projmanagment.webserver.users;
 
 import com.supersoft.projmanagment.webserver.projects.Project;
+import com.supersoft.projmanagment.webserver.tasks.Task;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -12,6 +13,6 @@ public interface IManager {
     List<Project> checkProjectAll();
     void deleteProject(Long id);
 //    void editProject();
-    void createTask(String taskName, String description, Boolean taskStatus, String assignedTo, Date dateStart, Date dateEnd);
+    void createTask(Task task);
 //    void getManagerStatistics();
 }

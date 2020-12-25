@@ -1,5 +1,6 @@
 package com.supersoft.projmanagment.infrastructure.database;
 
+import com.supersoft.projmanagment.webserver.tasks.Task;
 import com.supersoft.projmanagment.webserver.users.User;
 import com.supersoft.projmanagment.webserver.projects.Project;
 import org.slf4j.Logger;
@@ -33,23 +34,6 @@ class LoadDatabase {
     }
 
     @Bean
-    CommandLineRunner initTasks(TaskRepository repository) {
-        Date dateStart = null;
-        Date dateEnd = null;
-        try {
-            dateStart = new SimpleDateFormat("dd/MM/yyyy").parse(sDate);
-            dateEnd = new SimpleDateFormat("dd/MM/yyyy").parse(endDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        Date finalDateStart = dateStart;
-        Date finalDateEnd = dateEnd;
-        return args -> {
-            //log.info("Preloading " + repository.save(new Task("task1", "test1 tasks descr", true, "test2", finalDateStart, finalDateEnd)));
-        };
-    }
-
-    @Bean
     CommandLineRunner initProjects(ProjectRepository repository) {
         try {
             dateStart = new SimpleDateFormat("dd/MM/yyyy").parse(sDate);
@@ -74,6 +58,35 @@ class LoadDatabase {
         return args -> {
             log.info("Preloading " + repository.save(project));
             //log.info("Preloading " + repository.save(project2));
+        };
+    }
+
+    @Bean
+    CommandLineRunner initTasks(TaskRepository repository) {
+        Date dateStart = null;
+        Date dateEnd = null;
+        try {
+            dateStart = new SimpleDateFormat("dd/MM/yyyy").parse(sDate);
+            dateEnd = new SimpleDateFormat("dd/MM/yyyy").parse(endDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Date finalDateStart = dateStart;
+        Date finalDateEnd = dateEnd;
+
+//        Project project = new Project("project2", 1L,"allo", finalDateStart, finalDateEnd);
+//        User user1 = new User();
+//        User user2 = new User();
+//        user1.setFirstName("Philipp");
+//        user1.setProject(project);
+//        user2.setFirstName("Misha");
+//        user2.setProject(project);
+//
+//        List<User> listOfUsers = Arrays.asList(user1,user2);
+//        project.setListOfUsers(listOfUsers);
+
+        return args -> {
+            log.info("Preloading " + repository.save(new Task("task1", "test1 tasks descr", true, "test2", finalDateStart, finalDateEnd,1L)));
         };
     }
 }

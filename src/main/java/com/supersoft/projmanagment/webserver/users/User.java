@@ -1,5 +1,6 @@
 package com.supersoft.projmanagment.webserver.users;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.supersoft.projmanagment.webserver.projects.Project;
 
 import javax.persistence.*;
@@ -27,6 +28,7 @@ public class User {
     private String userType;
 
     private String password;
+    @JsonIgnore
     @ManyToOne(/*fetch = FetchType.LAZY*/)
     @JoinColumn(name = "id_project")
     private Project project;

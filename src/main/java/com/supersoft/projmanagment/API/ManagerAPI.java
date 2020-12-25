@@ -2,6 +2,7 @@ package com.supersoft.projmanagment.API;
 
 import com.supersoft.projmanagment.webserver.kernel.Server;
 import com.supersoft.projmanagment.webserver.projects.Project;
+import com.supersoft.projmanagment.webserver.tasks.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +35,13 @@ public class ManagerAPI {
     public void createProject(@RequestBody Project project) {
         server.startManagerHandler(project.getProjectName(), project.getIdManager(),
                 project.getDescription(), project.getDateStart(),project.getDateEnd());
+    }
+
+    @ResponseBody
+    @PostMapping("/task/create")
+    public void createTask(@RequestBody Task task) {
+        server.startManagerHandler(task.getTaskName(), task.getDescription(),
+                task.getTaskStatus(), task.getAssignedTo(), task.getDateStart(),task.getDateEnd());
     }
 
     @DeleteMapping("/projects/delete/{id}")

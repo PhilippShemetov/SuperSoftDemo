@@ -40,6 +40,10 @@ public class Server {
         mngHandler.createNewProject(projectName, idManager, description, dateStart, dateEnd);
     }
 
+    public void startManagerHandler(String taskName, String description, Boolean taskStatus, String assignedTo, Date dateStart, Date dateEnd) {
+        mngHandler.createTask(taskName,description,taskStatus, assignedTo, dateStart, dateEnd);
+    }
+
     public List<Project> startManagerHandler() {
         return mngHandler.checkProjectAll();
     }

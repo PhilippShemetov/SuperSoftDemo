@@ -28,17 +28,10 @@ public class Project {
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL,
     orphanRemoval = true)
     List<User> listOfUsers = new ArrayList<>();
-//    List<Task> listOfTasks;
-    //*************************
 
-//    List<User> listOfUsers;
-//    @OneToMany(mappedBy = "User")
-//    public List<User> getObjectList() {
-//        return listOfUsers;
-//    }
-
-
-    //*************************
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    List<User> listOfTasks = new ArrayList<>();
 
     private String description;
 

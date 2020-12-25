@@ -29,6 +29,11 @@ public class Manager implements IManager {
     }
 
     @Override
+    public void createTask(String taskName, String description, Boolean taskStatus, String assignedTo, Date dateStart, Date dateEnd) {
+        iDataBase.createTask(taskName,description,taskStatus, assignedTo, dateStart, dateEnd);
+    }
+
+    @Override
     public List<Project> checkProjectAll() {
         return iDataBase.showAllProject();
     }

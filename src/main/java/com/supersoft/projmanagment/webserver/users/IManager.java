@@ -12,7 +12,6 @@ public interface IManager {
     List<Project> checkProjectAll();
     void deleteProject(Long id);
 //    void editProject();
-//    void showAllProject();
-//    void createTask();
+    void createTask(String taskName, String description, Boolean taskStatus, String assignedTo, Date dateStart, Date dateEnd);
 //    void getManagerStatistics();
 }

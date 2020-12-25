@@ -1,5 +1,7 @@
 package com.supersoft.projmanagment.webserver.tasks;
 
+import com.supersoft.projmanagment.webserver.projects.Project;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
@@ -29,6 +31,10 @@ public class Task {
     //@Column(name = "date_end")
     Date dateEnd;
 
+    @ManyToOne(/*fetch = FetchType.LAZY*/)
+    @JoinColumn(name = "id_project")
+    private Task task;
+
     public Task() {
 
     }
@@ -39,6 +45,14 @@ public class Task {
         this.assignedTo = assignedTo;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
+    }
+
+    public Task getTask() {
+        return task;
+    }
+
+    public void setTask(Task task) {
+        this.task = task;
     }
 
     public String getTaskName() {

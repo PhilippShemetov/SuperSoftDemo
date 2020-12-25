@@ -8,9 +8,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 @Configuration
 class LoadDatabase {
@@ -58,9 +61,18 @@ class LoadDatabase {
         Date finalDateEnd = dateEnd;
 
         Project project = new Project("project1", 1L,"allo", finalDateStart, finalDateEnd);
-        Project project2 = new Project("project2", 1L,"hello", finalDateStart, finalDateEnd);
+        User user1 = new User();
+        User user2 = new User();
+        user1.setFirstName("Philipp");
+        user1.setProject(project);
+        user2.setFirstName("Misha");
+        user2.setProject(project);
+
+        List<User> listOfUsers = Arrays.asList(user1,user2);
+        project.setListOfUsers(listOfUsers);
+        //Project project2 = new Project("project2", 1L,"hello", finalDateStart, finalDateEnd);
         return args -> {
-            //log.info("Preloading " + repository.save(project));
+            log.info("Preloading " + repository.save(project));
             //log.info("Preloading " + repository.save(project2));
         };
     }

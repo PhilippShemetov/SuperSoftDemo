@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-//@Table(name = "users")
+@Table(name = "User")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,9 +27,9 @@ public class User {
     private String userType;
 
     private String password;
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "id_user",referencedColumnName = "id_project")
-//    private Project projects;
+    @ManyToOne(/*fetch = FetchType.LAZY*/)
+    @JoinColumn(name = "id_project")
+    private Project project;
 
 
     public User() {
@@ -44,12 +44,29 @@ public class User {
         this.password = password;
     }
 
+    public User(String firstName, String lastName, String login, String password, String userType,Project project) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.login = login;
+        this.userType = userType;
+        this.password = password;
+        this.project = project;
+    }
+
     public String getFirstName() {
         return firstName;
     }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     public String getLastName() {

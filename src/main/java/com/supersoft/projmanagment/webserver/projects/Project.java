@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-//@Table(name = "projects")
+@Table(name = "Project")
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +25,9 @@ public class Project {
     //@Column(name = "id_manager")
     private Long idManager;
 //    private String users = "1 ,2 ,3, 4";
-//    @OneToMany(mappedBy = "projects", cascade = CascadeType.ALL)
-//    List<User> listOfUsers = new ArrayList<>();
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL,
+    orphanRemoval = true)
+    List<User> listOfUsers = new ArrayList<>();
 //    List<Task> listOfTasks;
     //*************************
 
@@ -91,13 +92,13 @@ public class Project {
         this.idManager = idManager;
     }
 
-//    public List<User> getListOfUsers() {
-//        return listOfUsers;
-//    }
-//
-//    public void setListOfUsers(List<User> listOfUsers) {
-//        this.listOfUsers = listOfUsers;
-//    }
+    public List<User> getListOfUsers() {
+        return listOfUsers;
+    }
+
+    public void setListOfUsers(List<User> listOfUsers) {
+        this.listOfUsers = listOfUsers;
+    }
 //
 //    public List<Task> getListOfTasks() {
 //        return listOfTasks;

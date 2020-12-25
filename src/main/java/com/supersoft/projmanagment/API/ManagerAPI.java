@@ -48,7 +48,15 @@ public class ManagerAPI {
         server.startManagerHandlerDelete(id);
     }
 
-    //TODO
+
+    //TODO check tasks in cur project
+    //TODO check users in cur project
+    //TODO delete users in cur project
+    //TODO delete users in cur project
 
 
+
+    // optional
+    //TODO update tasks in cur project
+    //TODO update projects in cur project
 }

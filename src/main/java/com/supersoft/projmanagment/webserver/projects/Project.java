@@ -1,6 +1,7 @@
 package com.supersoft.projmanagment.webserver.projects;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.supersoft.projmanagment.webserver.tasks.Task;
 import com.supersoft.projmanagment.webserver.users.User;
 
 import javax.persistence.*;
@@ -31,7 +32,7 @@ public class Project {
 
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL,
             orphanRemoval = true)
-    List<User> listOfTasks = new ArrayList<>();
+    List<Task> listOfTasks = new ArrayList<>();
 
     private String description;
 

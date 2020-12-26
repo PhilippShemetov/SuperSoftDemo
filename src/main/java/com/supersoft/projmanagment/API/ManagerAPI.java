@@ -52,6 +52,11 @@ public class ManagerAPI {
         return server.startManagerHandlerCheckTask(id);
     }
 
+    @DeleteMapping("/task/delete/{id}")
+    void deleteTask(@PathVariable Long id) {
+        server.startManagerHandlerDeleteTask(id);
+    }
+
 
     //TODO check tasks in cur project??? check project has this data
     //TODO check users in cur project

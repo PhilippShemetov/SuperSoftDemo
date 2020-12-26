@@ -49,12 +49,7 @@ public class DataBase implements IDataBase {
 
     @Override
     public void createTask(Task task) {
-        Project project;
-        try {
-            project = projRepository.findById(task.getIdProject()).orElseThrow(() -> new ProjectNotFoundException(task.getIdProject().toString()));
-        } catch (ProjectNotFoundException ex) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, ex.getMessage());
-        }
+        Project project = checkProject(task.getIdProject());
         project.addTask(task);
         task.setProject(project);
         taskRepository.save(task);
@@ -87,6 +82,13 @@ public class DataBase implements IDataBase {
     @Override
     public List<Project> showAllProject() {
         return projRepository.findAll();
+    }
+
+    @Override
+    public void deleteTask(Long id) {
+        checkTask(id);
+        taskRepository.deleteById(id);
+        logger.info("project with id " + id + " has deleted");
     }
 
     @Override

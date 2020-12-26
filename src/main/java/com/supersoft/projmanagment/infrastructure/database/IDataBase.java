@@ -17,4 +17,5 @@ public interface IDataBase {
     Boolean updateProject();
     List<Project> showAllProject();
 
+    void deleteTask(Long id);
 }

@@ -35,6 +35,11 @@ public class Manager implements IManager {
     }
 
     @Override
+    public void deleteTask(Long id) {
+        iDataBase.deleteTask(id);
+    }
+
+    @Override
     public Task checkTask(Long id) {
         return iDataBase.checkTask(id);
     }

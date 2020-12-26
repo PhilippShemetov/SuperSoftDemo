@@ -56,4 +56,8 @@ public class Server {
     public User authHandler(String login, String password) {
         return authorisation.auth(login,password);
     }
+
+    public void startManagerHandlerDeleteTask(Long id) {
+        mngHandler.deleteTask(id);
+    }
 }

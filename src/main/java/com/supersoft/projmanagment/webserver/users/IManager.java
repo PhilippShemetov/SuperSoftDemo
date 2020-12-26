@@ -15,5 +15,7 @@ public interface IManager {
     Task checkTask(Long id);
 //    void editProject();
     void createTask(Task task);
+
+    void deleteTask(Long id);
 //    void getManagerStatistics();
 }

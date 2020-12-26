@@ -19,7 +19,6 @@ import java.util.List;
 @Component
 public class DataBase implements IDataBase {
 
-    //    private static IDataBase instance;
     Logger logger = LoggerFactory.getLogger(ManagerAPI.class);
     @Autowired
     private UserRepository userRepository;
@@ -33,18 +32,6 @@ public class DataBase implements IDataBase {
     @Override
     public User getUser(String login, String password) {
         return userRepository.findByLoginAndPassword(login, password);
-    }
-
-    @Override
-    public Boolean createUser() {
-        return null;
-    }
-
-    @Override
-    public void createNewProject(String projectName, Long idManager, String description, Date dateStart, Date dateEnd) {
-        Project proj = new Project(projectName, idManager, description, dateStart, dateEnd);
-        projRepository.save(proj);
-        logger.info("save - " + proj);
     }
 
     @Override
@@ -75,8 +62,10 @@ public class DataBase implements IDataBase {
     }
 
     @Override
-    public Boolean updateProject() {
-        return null;
+    public void updateProject(Long id, Project project) {
+        checkProject(id);
+        projRepository.save(project);
+        logger.info("update - " + project);
     }
 
     @Override
@@ -89,6 +78,12 @@ public class DataBase implements IDataBase {
         checkTask(id);
         taskRepository.deleteById(id);
         logger.info("project with id " + id + " has deleted");
+    }
+
+    @Override
+    public void createNewProject(Project project) {
+        projRepository.save(project);
+        logger.info("save - " + project);
     }
 
     @Override

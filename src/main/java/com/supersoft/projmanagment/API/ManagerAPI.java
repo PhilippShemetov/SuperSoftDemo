@@ -6,6 +6,7 @@ import com.supersoft.projmanagment.webserver.tasks.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -14,7 +15,6 @@ public class ManagerAPI {
 
     @Autowired
     private Server server;
-//    private Server server = Server.getInstance();
 
     @ResponseBody
     @GetMapping("/projects/check/{id}")
@@ -31,8 +31,7 @@ public class ManagerAPI {
     @ResponseBody
     @PostMapping("/projects/create")
     public void createProject(@RequestBody Project project) {
-        server.startManagerHandler(project.getProjectName(), project.getIdManager(),
-                project.getDescription(), project.getDateStart(),project.getDateEnd());
+        server.startManagerHandler(project);
     }
 
     @ResponseBody
@@ -58,7 +57,13 @@ public class ManagerAPI {
     }
 
 
-    //TODO check tasks in cur project??? check project has this data
+    //TODO update project
+    @ResponseBody
+    @PostMapping("/projects/update/{id}")
+    public void updateProject(@PathVariable Long id, @RequestBody Project project) {
+        server.startManagerHandlerUpdateProj(id,project);
+    }
+
     //TODO check users in cur project
     //TODO delete users in cur project
     //TODO delete users in cur project
@@ -68,4 +73,5 @@ public class ManagerAPI {
     // optional
     //TODO update tasks in cur project
     //TODO update projects in cur project
+    //TODO check tasks in cur project??? check project has this data
 }

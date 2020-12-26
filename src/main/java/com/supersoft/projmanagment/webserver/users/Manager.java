@@ -20,11 +20,6 @@ public class Manager implements IManager {
     }
 
     @Override
-    public void createNewProject(String projectName, Long idManager,String description, Date dateStart, Date dateEnd) {
-        iDataBase.createNewProject(projectName, idManager, description, dateStart, dateEnd);
-    }
-
-    @Override
     public void deleteProject(Long id) {
         iDataBase.deleteProject(id);
     }
@@ -37,6 +32,16 @@ public class Manager implements IManager {
     @Override
     public void deleteTask(Long id) {
         iDataBase.deleteTask(id);
+    }
+
+    @Override
+    public void updateProj(Long id, Project project) {
+        iDataBase.updateProject(id, project);
+    }
+
+    @Override
+    public void createNewProject(Project project) {
+        iDataBase.createNewProject(project);
     }
 
     @Override

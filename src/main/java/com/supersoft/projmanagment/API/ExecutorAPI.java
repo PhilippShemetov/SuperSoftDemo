@@ -25,6 +25,7 @@ public class ExecutorAPI {
     //TODO check project
     //TODO check task
     //TODO update end date
+    //TODO check own task
 
 //    @ResponseBody
 //    @GetMapping("/task/check/{id}/")

@@ -29,7 +29,7 @@ public class Project {
     List<User> listOfUsers = new ArrayList<>();
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL,
-            orphanRemoval = true)
+            orphanRemoval = true, fetch = FetchType.EAGER)
     List<Task> listOfTasks = new ArrayList<>();
 
     private String description;

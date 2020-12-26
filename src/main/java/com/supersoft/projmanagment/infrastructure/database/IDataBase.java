@@ -7,12 +7,19 @@ import java.util.List;
 
 public interface IDataBase {
     User getUser(String login,String password);
+
     void createTask(Task task);
+
     Project checkProject(Long id);
+
     void deleteProject(Long id);
+
     Task checkTask(Long id);
+
     void updateProject(Long id, Project project);
+
     List<Project> showAllProject();
+
     void deleteTask(Long id);
 
     void createNewProject(Project project);
@@ -20,4 +27,6 @@ public interface IDataBase {
     void updateUser(Long id, User user);
 
     User checkUser(Long id);
+
+    void updateTask(Long id, Task task);
 }

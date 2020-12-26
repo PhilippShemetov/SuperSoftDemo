@@ -76,9 +76,15 @@ public class ManagerAPI {
         return server.startManagerHandlerCheckUser(id);
     }
 
+    @ResponseBody
+    @PostMapping("/task/update/{id}")
+    public void updateTask(@PathVariable Long id, @RequestBody Task task) {
+        server.startManagerHandlerUpdateTask(id, task);
+    }
+
 
     // optional
-    //TODO update task in cur project
+    //TODO update task in cur project (Сделано)
     //TODO check users in cur project check project has this data
     //TODO check tasks in cur project??? check project has this data
 }

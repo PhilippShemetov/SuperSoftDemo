@@ -2,6 +2,7 @@ package com.supersoft.projmanagment.webserver.kernel;
 
 import com.supersoft.projmanagment.webserver.projects.Project;
 import com.supersoft.projmanagment.webserver.tasks.Task;
+import com.supersoft.projmanagment.webserver.users.IExecutor;
 import com.supersoft.projmanagment.webserver.users.IManager;
 import com.supersoft.projmanagment.webserver.users.User;
 import com.supersoft.projmanagment.webserver.users.auth.Authorisation;
@@ -18,6 +19,11 @@ public class Server {
 
     @Autowired
     private IManager mngHandler;
+
+    @Autowired
+    private IExecutor extrHandler;
+
+    //Обработка менеджера
 
     public Project startManagerHandlerCheckProj(Long id) {
         return mngHandler.checkProject(id);
@@ -44,9 +50,6 @@ public class Server {
         return mngHandler.checkProjectAll();
     }
 
-    public User authHandler(String login, String password) {
-        return authorisation.auth(login, password);
-    }
 
     public void startManagerHandlerDeleteTask(Long id) {
         mngHandler.deleteTask(id);
@@ -56,11 +59,31 @@ public class Server {
         mngHandler.updateProj(id, project);
     }
 
+    public void startManagerHandlerUpdateTask(Long id, Task task) {
+        mngHandler.updateTask(id, task);
+    }
+
     public void startManagerHandlerUpdateUser(Long id, User user) {
         mngHandler.updateUser(id,user);
     }
 
     public User startManagerHandlerCheckUser(Long id) {
         return mngHandler.checkUser(id);
+    }
+
+    //Авторизация
+
+    public User authHandler(String login, String password) {
+        return authorisation.auth(login, password);
+    }
+
+    //Обработка исполнителя
+
+    public List<Project> startExecutorHandlerCheckProjects() {
+        return extrHandler.checkProjectAll();
+    }
+
+    public Project startExecutorHandlerCheckProj(Long id) {
+        return extrHandler.checkProject(id);
     }
 }

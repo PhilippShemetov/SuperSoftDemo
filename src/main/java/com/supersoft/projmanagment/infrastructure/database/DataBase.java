@@ -35,6 +35,25 @@ public class DataBase implements IDataBase {
     }
 
     @Override
+    public void updateTask(Long id, Task task) {
+        Task task1 = checkTask(id);
+        if(task.getTaskName()!=null)
+            task1.setTaskName(task.getTaskName());
+        if(task.getDescription()!=null)
+            task1.setDescription(task.getDescription());
+        if(task.getTaskStatus()!=null)
+            task1.setTaskStatus(task.getTaskStatus());
+        if(task.getAssignedTo()!=null)
+            task1.setAssignedTo(task.getAssignedTo());
+        if(task.getDateStart()!=null)
+            task1.setDateStart(task.getDateStart());
+        if(task.getDateEnd()!=null)
+            task1.setDateEnd(task.getDateEnd());
+        taskRepository.save(task1);
+        logger.info("update - " + task);
+    }
+
+    @Override
     public void createTask(Task task) {
         Project project = checkProject(task.getIdProject());
         project.addTask(task);
@@ -63,8 +82,24 @@ public class DataBase implements IDataBase {
 
     @Override
     public void updateProject(Long id, Project project) {
-        checkProject(id);
-        projRepository.save(project);
+        Project project1 = checkProject(id);
+        if(project.getProjectName()!=null)
+            project1.setProjectName(project.getProjectName());
+        if(project.getDescription()!=null)
+            project1.setDescription(project.getDescription());
+        if(project.getIdManager()!=null)
+            project1.setIdManager(project.getIdManager());
+        if(!project.getListOfUsers().isEmpty()) // при не пустом списке не парсит и вызывает bad request
+            project1.setListOfUsers(project.getListOfUsers());
+        if(!project.getListOfTasks().isEmpty()) // при не пустом списке не парсит и вызывает bad request
+            project1.setListOfTasks(project.getListOfTasks());
+        if(project.getDateStart()!=null)
+            project1.setDateStart(project.getDateStart());
+        if(project.getDateEnd()!=null)
+            project1.setDateEnd(project.getDateEnd());
+
+
+        projRepository.save(project1);
         logger.info("update - " + project);
     }
 

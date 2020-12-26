@@ -27,8 +27,27 @@ class LoadDatabase {
 
     @Bean
     CommandLineRunner initUsers(UserRepository repository) {
+        User user1 = new User();
+        User user2 = new User();
+        User user3 = new User();
+        User user4 = new User();
+        User user5 = new User();
+        user1.setFirstName("Philipp");
+        user1.setUserType("executor");
+        user2.setFirstName("Misha");
+        user2.setUserType("manager");
+        user3.setFirstName("Artyom");
+        user3.setUserType("manager");
+        user4.setFirstName("Katya");
+        user4.setUserType("manager");
+        user5.setFirstName("Vika");
+        user5.setUserType("manager");
         return args -> {
-            //log.info("Preloading " + repository.save(new User("test1", "test1", "test1", "123", "manager")));
+            log.info("Preloading " + repository.save(user1));
+            log.info("Preloading " + repository.save(user2));
+            log.info("Preloading " + repository.save(user3));
+            log.info("Preloading " + repository.save(user4));
+            log.info("Preloading " + repository.save(user5));
             //log.info("Preloading " + repository.save(new User("test2", "test2", "test2", "123", "executor")));
         };
     }
@@ -47,9 +66,24 @@ class LoadDatabase {
         Project project = new Project("project1", 1L,"allo", finalDateStart, finalDateEnd);
         User user1 = new User();
         User user2 = new User();
+        User user3 = new User();
+        User user4 = new User();
+        User user5 = new User();
         user1.setFirstName("Philipp");
-        user1.setProject(project);
+        user1.setUserType("executor");
         user2.setFirstName("Misha");
+        user2.setUserType("manager");
+        user3.setFirstName("Artyom");
+        user3.setUserType("manager");
+        user4.setFirstName("Katya");
+        user4.setUserType("manager");
+        user5.setFirstName("Vika");
+        user1.setUserType("manager");
+
+
+
+        user1.setProject(project);
+
         user2.setProject(project);
         project.addUser(user1);
         project.addUser(user2);

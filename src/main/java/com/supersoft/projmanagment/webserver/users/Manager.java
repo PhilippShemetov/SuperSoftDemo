@@ -19,6 +19,11 @@ public class Manager implements IManager {
     }
 
     @Override
+    public void updateTask(Long id, Task task) {
+        iDataBase.updateTask(id, task);
+    }
+
+    @Override
     public void deleteProject(Long id) {
         iDataBase.deleteProject(id);
     }

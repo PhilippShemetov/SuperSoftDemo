@@ -22,18 +22,18 @@ public class Server {
     private IManager mngHandler;
 
 
-    public static Server getInstance() {
-        if (instance == null) {
-            instance = new Server();
-        }
-        return instance;
-    }
+//    public static Server getInstance() {
+//        if (instance == null) {
+//            instance = new Server();
+//        }
+//        return instance;
+//    }
 
-    public Project startManagerHandler(Long id) {
+    public Project startManagerHandlerCheckProj(Long id) {
         return mngHandler.checkProject(id);
     }
 
-    public void startManagerHandlerDelete(Long id) {
+    public void startManagerHandlerDeleteProj(Long id) {
         mngHandler.deleteProject(id);
     }
 
@@ -41,11 +41,15 @@ public class Server {
         mngHandler.createNewProject(projectName, idManager, description, dateStart, dateEnd);
     }
 
-    public void startManagerHandler(Task task) {
+    public void startManagerHandlerCreateTask(Task task) {
         mngHandler.createTask(task);
     }
 
-    public List<Project> startManagerHandler() {
+    public Task startManagerHandlerCheckTask(Long id) {
+        return mngHandler.checkTask(id);
+    }
+
+    public List<Project> startManagerHandlerCheckProjects() {
         return mngHandler.checkProjectAll();
     }
 

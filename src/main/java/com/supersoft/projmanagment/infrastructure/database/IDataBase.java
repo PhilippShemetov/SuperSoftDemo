@@ -13,6 +13,7 @@ public interface IDataBase {
     void createTask(Task task);
     Project checkProject(Long id);
     void deleteProject(Long id);
+    Task checkTask(Long id);
     Boolean updateProject();
     List<Project> showAllProject();
 

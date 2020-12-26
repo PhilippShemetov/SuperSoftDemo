@@ -4,17 +4,15 @@ import com.supersoft.projmanagment.API.ManagerAPI;
 import com.supersoft.projmanagment.webserver.projects.Project;
 import com.supersoft.projmanagment.webserver.projects.ProjectNotFoundException;
 import com.supersoft.projmanagment.webserver.tasks.Task;
+import com.supersoft.projmanagment.webserver.tasks.TaskNotFoundException;
 import com.supersoft.projmanagment.webserver.users.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.PersistenceException;
 import java.util.Date;
 import java.util.List;
 
@@ -46,7 +44,7 @@ public class DataBase implements IDataBase {
     public void createNewProject(String projectName, Long idManager, String description, Date dateStart, Date dateEnd) {
         Project proj = new Project(projectName, idManager, description, dateStart, dateEnd);
         projRepository.save(proj);
-        logger.info("save - "  + proj);
+        logger.info("save - " + proj);
     }
 
     @Override
@@ -54,8 +52,8 @@ public class DataBase implements IDataBase {
         Project project;
         try {
             project = projRepository.findById(task.getIdProject()).orElseThrow(() -> new ProjectNotFoundException(task.getIdProject().toString()));
-        } catch (ProjectNotFoundException ex){
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN,ex.getMessage());
+        } catch (ProjectNotFoundException ex) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, ex.getMessage());
         }
         project.addTask(task);
         task.setProject(project);
@@ -75,8 +73,8 @@ public class DataBase implements IDataBase {
         Project project;
         try {
             project = projRepository.findById(id).orElseThrow(() -> new ProjectNotFoundException(id.toString()));
-        } catch (ProjectNotFoundException ex){
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN,ex.getMessage());
+        } catch (ProjectNotFoundException ex) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, ex.getMessage());
         }
         return project;
     }
@@ -89,5 +87,16 @@ public class DataBase implements IDataBase {
     @Override
     public List<Project> showAllProject() {
         return projRepository.findAll();
+    }
+
+    @Override
+    public Task checkTask(Long id) {
+        Task task;
+        try {
+            task = taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException(id.toString()));
+        } catch (ProjectNotFoundException ex) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, ex.getMessage());
+        }
+        return task;
     }
 }

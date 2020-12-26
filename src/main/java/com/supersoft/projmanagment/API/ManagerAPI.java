@@ -4,10 +4,8 @@ import com.supersoft.projmanagment.webserver.kernel.Server;
 import com.supersoft.projmanagment.webserver.projects.Project;
 import com.supersoft.projmanagment.webserver.tasks.Task;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -21,13 +19,13 @@ public class ManagerAPI {
     @ResponseBody
     @GetMapping("/projects/check/{id}")
     Project checkProject(@PathVariable Long id) {
-        return server.startManagerHandler(id);
+        return server.startManagerHandlerCheckProj(id);
     }
 
     @ResponseBody
     @GetMapping("/projects/check")
     List<Project> checkProjectAll() {
-        return server.startManagerHandler();
+        return server.startManagerHandlerCheckProjects();
     }
 
     @ResponseBody
@@ -40,16 +38,22 @@ public class ManagerAPI {
     @ResponseBody
     @PostMapping("/task/create")
     public void createTask(@RequestBody Task task) {
-        server.startManagerHandler(task);
+        server.startManagerHandlerCreateTask(task);
     }
 
     @DeleteMapping("/projects/delete/{id}")
     void deleteProject(@PathVariable Long id) {
-        server.startManagerHandlerDelete(id);
+        server.startManagerHandlerDeleteProj(id);
+    }
+
+    @ResponseBody
+    @GetMapping("/task/check/{id}")
+    Task checkTasks(@PathVariable Long id) {
+        return server.startManagerHandlerCheckTask(id);
     }
 
 
-    //TODO check tasks in cur project
+    //TODO check tasks in cur project??? check project has this data
     //TODO check users in cur project
     //TODO delete users in cur project
     //TODO delete users in cur project

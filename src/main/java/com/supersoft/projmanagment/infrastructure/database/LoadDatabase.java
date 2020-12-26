@@ -87,7 +87,9 @@ class LoadDatabase {
 ////        project.setListOfUsers(listOfUsers);
 //
 //        return args -> {
-//            log.info("Preloading " + repository.save(new Task("task1", "test1 tasks descr", true, "test2", finalDateStart, finalDateEnd,1L)));
+//            Task task = new Task("task1", "test1 tasks descr", true, "test2", finalDateStart, finalDateEnd,1L);
+//            repository.createTask(task);
+//            log.info("Preloading " + task,toString());
 //        };
 //    }
 }

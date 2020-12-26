@@ -8,12 +8,17 @@ import com.supersoft.projmanagment.webserver.users.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.PersistenceException;
 import java.util.Date;
 import java.util.List;
 
-@Service
+@Component
 public class DataBase implements IDataBase {
 
     //    private static IDataBase instance;
@@ -26,10 +31,6 @@ public class DataBase implements IDataBase {
 
     @Autowired
     private TaskRepository taskRepository;
-
-//    public DataBase(UserRepository repository) {
-//        this.repository = repository;
-//    }
 
     @Override
     public User getUser(String login, String password) {
@@ -50,7 +51,13 @@ public class DataBase implements IDataBase {
 
     @Override
     public void createTask(Task task) {
-        Project project =  projRepository.getOne(task.getIdProject());
+        Project project;
+        try {
+            project = projRepository.findById(task.getIdProject()).orElseThrow(() -> new ProjectNotFoundException(task.getIdProject().toString()));
+        } catch (ProjectNotFoundException ex){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN,ex.getMessage());
+        }
+        project.addTask(task);
         task.setProject(project);
         taskRepository.save(task);
     }
@@ -65,7 +72,13 @@ public class DataBase implements IDataBase {
 
     @Override
     public Project checkProject(Long id) {
-        return projRepository.findById(id).orElseThrow(() -> new ProjectNotFoundException(id.toString()));
+        Project project;
+        try {
+            project = projRepository.findById(id).orElseThrow(() -> new ProjectNotFoundException(id.toString()));
+        } catch (ProjectNotFoundException ex){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN,ex.getMessage());
+        }
+        return project;
     }
 
     @Override

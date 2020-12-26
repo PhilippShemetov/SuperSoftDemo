@@ -35,7 +35,7 @@ public class Task {
     Date dateEnd;
 
     @JsonIgnore
-    @ManyToOne(/*fetch = FetchType.LAZY*/cascade = CascadeType.ALL)
+    @ManyToOne(/*fetch = FetchType.EAGER, cascade = CascadeType.ALL*/)
     @JoinColumn(name = "id_project")
     private Project project;
 
@@ -70,14 +70,6 @@ public class Task {
 
     public void setProject(Project project) {
         this.project = project;
-    }
-
-    public Project getTask() {
-        return project;
-    }
-
-    public void setTask(Project task) {
-        this.project = task;
     }
 
     public String getTaskName() {

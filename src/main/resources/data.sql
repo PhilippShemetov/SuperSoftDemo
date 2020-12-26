@@ -1,0 +1,1 @@
+INSERT INTO task(assigned_to,date_end,date_start,description,id_project,task_name,task_status) VALUES ('Misha', '2015-01-01', '2020-05-05','description', 1,'task1',true);

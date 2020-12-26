@@ -1,12 +1,9 @@
 package com.supersoft.projmanagment.webserver.projects;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.supersoft.projmanagment.webserver.tasks.Task;
 import com.supersoft.projmanagment.webserver.users.User;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,12 +20,12 @@ public class Project {
     //@Column(name = "project_name")
     private String projectName;
 
-//    @OneToOne(cascade = CascadeType.ALL)
+    //    @OneToOne(cascade = CascadeType.ALL)
     //@Column(name = "id_manager")
     private Long idManager;
-//    private String users = "1 ,2 ,3, 4";
+    //    private String users = "1 ,2 ,3, 4";
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL,
-    orphanRemoval = true)
+            orphanRemoval = true)
     List<User> listOfUsers = new ArrayList<>();
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL,
@@ -43,18 +40,21 @@ public class Project {
     //@Column(name = "date_end")
     private Date dateEnd;
 
-    public Project(String projectName, Long idManager, List<User> listOfUsers, String description, Date dateStart, Date dateEnd) {
+    public Project(String projectName, Long idManager, List<User> listOfUsers, List<Task> listOfTasks, String description, Date dateStart, Date dateEnd) {
         this.projectName = projectName;
         this.idManager = idManager;
-        //this.listOfUsers = listOfUsers;
+        this.listOfUsers = listOfUsers;
+        this.listOfTasks = listOfTasks;
         this.description = description;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
     }
-    public Project(){
+
+    public Project() {
 
     }
-    public Project(Long idProject){
+
+    public Project(Long idProject) {
         setIdProject(idProject);
     }
 
@@ -64,6 +64,8 @@ public class Project {
         this.description = description;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
+        this.listOfUsers = new ArrayList<>();
+        this.listOfTasks = new ArrayList<>();
     }
 
     public String getProjectName() {
@@ -97,14 +99,30 @@ public class Project {
     public void setListOfUsers(List<User> listOfUsers) {
         this.listOfUsers = listOfUsers;
     }
-//
-//    public List<Task> getListOfTasks() {
-//        return listOfTasks;
-//    }
-//
-//    public void setListOfTasks(List<Task> listOfTasks) {
-//        this.listOfTasks = listOfTasks;
-//    }
+
+    public void addUser(User user) {
+        listOfUsers.add(user);
+    }
+
+    public void addTask(Task task) {
+        listOfTasks.add(task);
+    }
+
+    public void removeUser(User user) {
+        listOfUsers.remove(user);
+    }
+
+    public void removeTask(Task task) {
+        listOfTasks.remove(task);
+    }
+
+    public List<Task> getListOfTasks() {
+        return listOfTasks;
+    }
+
+    public void setListOfTasks(List<Task> listOfTasks) {
+        this.listOfTasks = listOfTasks;
+    }
 
     public String getDescription() {
         return description;

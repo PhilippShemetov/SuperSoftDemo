@@ -6,7 +6,6 @@ import com.supersoft.projmanagment.webserver.tasks.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -42,6 +41,16 @@ public class Manager implements IManager {
     @Override
     public void createNewProject(Project project) {
         iDataBase.createNewProject(project);
+    }
+
+    @Override
+    public void updateUser(Long id, User user) {
+        iDataBase.updateUser(id,user);
+    }
+
+    @Override
+    public User checkUser(Long id) {
+        return iDataBase.checkUser(id);
     }
 
     @Override

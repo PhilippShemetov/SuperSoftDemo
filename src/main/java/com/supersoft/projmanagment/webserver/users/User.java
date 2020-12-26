@@ -33,6 +33,8 @@ public class User {
     @JoinColumn(name = "id_project")
     private Project project;
 
+    @Column(name = "id_project", insertable = false, updatable = false)
+    private Long idProject;
 
     public User() {
 
@@ -46,7 +48,7 @@ public class User {
         this.password = password;
     }
 
-    public User(String firstName, String lastName, String login, String password, String userType,Project project) {
+    public User(String firstName, String lastName, String login, String password, String userType, Project project) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;

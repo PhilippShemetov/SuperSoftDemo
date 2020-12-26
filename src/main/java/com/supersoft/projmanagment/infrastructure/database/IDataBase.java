@@ -16,4 +16,8 @@ public interface IDataBase {
     void deleteTask(Long id);
 
     void createNewProject(Project project);
+
+    void updateUser(Long id, User user);
+
+    User checkUser(Long id);
 }

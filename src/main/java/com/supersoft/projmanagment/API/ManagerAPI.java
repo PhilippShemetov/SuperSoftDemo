@@ -3,10 +3,10 @@ package com.supersoft.projmanagment.API;
 import com.supersoft.projmanagment.webserver.kernel.Server;
 import com.supersoft.projmanagment.webserver.projects.Project;
 import com.supersoft.projmanagment.webserver.tasks.Task;
+import com.supersoft.projmanagment.webserver.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -56,22 +56,29 @@ public class ManagerAPI {
         server.startManagerHandlerDeleteTask(id);
     }
 
-
-    //TODO update project
     @ResponseBody
     @PostMapping("/projects/update/{id}")
     public void updateProject(@PathVariable Long id, @RequestBody Project project) {
-        server.startManagerHandlerUpdateProj(id,project);
+        server.startManagerHandlerUpdateProj(id, project);
     }
 
-    //TODO check users in cur project
-    //TODO delete users in cur project
-    //TODO delete users in cur project
 
+    // add and delete users to cur project (changing project id)
+    @ResponseBody
+    @PostMapping("/users/update/{id}")
+    public void updateUser(@PathVariable Long id, @RequestBody User user) {
+        server.startManagerHandlerUpdateUser(id, user);
+    }
+
+    @ResponseBody
+    @GetMapping("/users/check/{id}")
+    public User checkUser(@PathVariable Long id) {
+        return server.startManagerHandlerCheckUser(id);
+    }
 
 
     // optional
-    //TODO update tasks in cur project
-    //TODO update projects in cur project
+    //TODO update task in cur project
+    //TODO check users in cur project check project has this data
     //TODO check tasks in cur project??? check project has this data
 }

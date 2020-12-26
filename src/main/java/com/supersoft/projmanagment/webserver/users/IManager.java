@@ -22,5 +22,9 @@ public interface IManager {
     void updateProj(Long id, Project project);
 
     void createNewProject(Project project);
+
+    void updateUser(Long id, User user);
+
+    User checkUser(Long id);
 //    void getManagerStatistics();
 }

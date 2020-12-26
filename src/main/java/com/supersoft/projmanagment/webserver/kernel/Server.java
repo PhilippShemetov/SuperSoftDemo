@@ -55,4 +55,12 @@ public class Server {
     public void startManagerHandlerUpdateProj(Long id, Project project) {
         mngHandler.updateProj(id, project);
     }
+
+    public void startManagerHandlerUpdateUser(Long id, User user) {
+        mngHandler.updateUser(id,user);
+    }
+
+    public User startManagerHandlerCheckUser(Long id) {
+        return mngHandler.checkUser(id);
+    }
 }

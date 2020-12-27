@@ -27,11 +27,11 @@ class LoadDatabase {
 
     @Bean
     CommandLineRunner initUsers(UserRepository repository) {
-        User user1 = new User("Philipp","Shemetov","admin","123","executor");
-        User user2 = new User("Misha","Kurakin","admin","123","executor");
-        User user3 = new User("Katya","Guseva","admin","123","manager");
-        User user4 = new User("Artyom","Sadikov","admin","123","manager");
-        User user5 = new User("Vika","Makarova","admin","123","manager");
+        User user1 = new User("Philipp","Shemetov","admin1","123","executor");
+        User user2 = new User("Misha","Kurakin","admin2","123","executor");
+        User user3 = new User("Katya","Guseva","admin3","123","manager");
+        User user4 = new User("Artem","Sadikov","admin4","123","manager");
+        User user5 = new User("Vika","Makarova","admin5","123","manager");
 
         return args -> {
             log.info("Preloading " + repository.save(user1));
@@ -56,8 +56,8 @@ class LoadDatabase {
 
         Project project = new Project("project1", 1L,"allo", finalDateStart, finalDateEnd);
 
-        User user1 = new User("Philipp","Shemetov","admin","123","executor");
-        User user2 = new User("Misha","Kurakin","admin","123","executor");
+        User user1 = new User("Philipp","Shemetov","admin6","123","executor");
+        User user2 = new User("Misha","Kurakin","admin7","123","executor");
 
 
 
@@ -71,7 +71,7 @@ class LoadDatabase {
 //        project
         //Project project2 = new Project("project2", 1L,"hello", finalDateStart, finalDateEnd);
         return args -> {
-            log.info("Preloading " + repository.save(project));
+            //log.info("Preloading " + repository.save(project));
             //log.info("Preloading " + repository.save(project2));
         };
     }

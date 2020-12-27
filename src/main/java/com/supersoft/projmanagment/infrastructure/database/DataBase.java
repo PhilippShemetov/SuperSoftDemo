@@ -123,6 +123,11 @@ public class DataBase implements IDataBase {
 
     @Override
     public void createNewProject(Project project) {
+        List<User> listOfUsers = project.getListOfUsers();
+        for(User users : listOfUsers){
+            users.setProject(project);
+            //project.addUser(users);
+        }
         projRepository.save(project);
         logger.info("save - " + project);
     }

@@ -33,6 +33,7 @@ public class ManagerAPI {
     @ResponseBody
     @PostMapping("/projects/create")
     public void createProject(@RequestBody Project project) {
+
         server.startManagerHandler(project);
     }
 

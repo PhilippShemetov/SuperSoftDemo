@@ -75,6 +75,11 @@ public class Manager implements IManager {
     }
 
     @Override
+    public List<Task> checkTasksInProject(Long id) {
+        return iDataBase.checkTasksInProject(id);
+    }
+
+    @Override
     public List<Project> checkProjectAll() {
         return iDataBase.showAllProject();
     }

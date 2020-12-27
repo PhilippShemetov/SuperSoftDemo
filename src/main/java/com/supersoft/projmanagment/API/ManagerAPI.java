@@ -59,8 +59,14 @@ public class ManagerAPI {
 
     @ResponseBody
     @GetMapping("/task/check/{id}")
-    Task checkTasks(@PathVariable Long id) {
+    public Task checkTasks(@PathVariable Long id) {
         return server.startManagerHandlerCheckTask(id);
+    }
+
+    @ResponseBody
+    @GetMapping("/projects/task/check/{id}")
+    List<Task> checkTaskInProjAll(@PathVariable Long id) {
+        return server.startManagerHandlerCheckTasksInProject(id);
     }
 
     @DeleteMapping("/task/delete/{id}")

@@ -79,6 +79,10 @@ public class Server {
         return mngHandler.checkAllUsers();
     }
 
+    public List<Task> startManagerHandlerCheckTasksInProject(Long id) {
+        return mngHandler.checkTasksInProject(id);
+    }
+
     //Авторизация
 
     public User authHandler(String login, String password) {

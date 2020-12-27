@@ -31,13 +31,14 @@ public class ExecutorAPI {
         return server.startExecutorHandlerCheckProjects();
     }
 
+
+    //Функции связанные с задачами
+
     @ResponseBody
     @GetMapping("/projects/task/check/{id}")
     List<Task> checkTaskInProjAll(@PathVariable Long id) {
         return server.startExecutorHandlerCheckTasksInProject(id);
     }
-
-    //Функции связанные с задачами
 
     //Функции связанные с пользователями
 

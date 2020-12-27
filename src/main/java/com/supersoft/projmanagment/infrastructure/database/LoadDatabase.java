@@ -71,7 +71,7 @@ class LoadDatabase {
 //        project
         //Project project2 = new Project("project2", 1L,"hello", finalDateStart, finalDateEnd);
         return args -> {
-            //log.info("Preloading " + repository.save(project));
+            log.info("Preloading " + repository.save(project));
             //log.info("Preloading " + repository.save(project2));
         };
     }

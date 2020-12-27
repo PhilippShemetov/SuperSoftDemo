@@ -18,6 +18,7 @@ public class AuthAPITest {
     @Autowired
     private UserRepository userRepository;
 
+    //Авторизация пользователя
     @Test
     public void authorizationUserTest() {
         User usr = new User("Bob", "Anderson", "test1", "123", "manager");
@@ -26,6 +27,7 @@ public class AuthAPITest {
         assertThat(authUser.getFirstName().equals("Bob"));
     }
 
+    //Проверка на несуществование пользователя
     @Test
     public void authorizationNotExistUserTest() {
         User usr = new User("Bob", "Anderson", "notExist", "123", "manager");
@@ -33,6 +35,7 @@ public class AuthAPITest {
         assertThat(authUser == null);
     }
 
+    //Проверка пользователя на
     @Test
     public void authorizationWithWrongPassword() {
         User usr = new User("Bob", "Anderson", "test2", "123", "manager");

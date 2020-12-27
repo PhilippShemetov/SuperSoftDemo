@@ -102,7 +102,8 @@ public class ManagerAPI {
     }
 
 
-
+    //TODO UPDATE project for user
+    // TODO bind user to task
 
     // optional
     //TODO update task in cur project (Сделано)

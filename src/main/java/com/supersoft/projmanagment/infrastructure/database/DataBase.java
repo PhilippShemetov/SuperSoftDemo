@@ -37,17 +37,17 @@ public class DataBase implements IDataBase {
     @Override
     public void updateTask(Long id, Task task) {
         Task task1 = checkTask(id);
-        if(task.getTaskName()!=null)
+        if (task.getTaskName() != null)
             task1.setTaskName(task.getTaskName());
-        if(task.getDescription()!=null)
+        if (task.getDescription() != null)
             task1.setDescription(task.getDescription());
-        if(task.getTaskStatus()!=null)
+        if (task.getTaskStatus() != null)
             task1.setTaskStatus(task.getTaskStatus());
-        if(task.getAssignedTo()!=null)
+        if (task.getAssignedTo() != null)
             task1.setAssignedTo(task.getAssignedTo());
-        if(task.getDateStart()!=null)
+        if (task.getDateStart() != null)
             task1.setDateStart(task.getDateStart());
-        if(task.getDateEnd()!=null)
+        if (task.getDateEnd() != null)
             task1.setDateEnd(task.getDateEnd());
         taskRepository.save(task1);
         logger.info("update - " + task);
@@ -87,26 +87,44 @@ public class DataBase implements IDataBase {
     }
 
     @Override
-    public void updateProject(Long id, Project project) {
+    public void updateProject(Long id, Project projectNew) {
         Project project1 = checkProject(id);
-        if(project.getProjectName()!=null)
-            project1.setProjectName(project.getProjectName());
-        if(project.getDescription()!=null)
-            project1.setDescription(project.getDescription());
-        if(project.getIdManager()!=null)
-            project1.setIdManager(project.getIdManager());
-        if(!project.getListOfUsers().isEmpty()) // при не пустом списке не парсит и вызывает bad request
-            project1.setListOfUsers(project.getListOfUsers());
-        if(!project.getListOfTasks().isEmpty()) // при не пустом списке не парсит и вызывает bad request
-            project1.setListOfTasks(project.getListOfTasks());
-        if(project.getDateStart()!=null)
-            project1.setDateStart(project.getDateStart());
-        if(project.getDateEnd()!=null)
-            project1.setDateEnd(project.getDateEnd());
+        if (projectNew.getProjectName() != null)
+            project1.setProjectName(projectNew.getProjectName());
+        if (projectNew.getDescription() != null)
+            project1.setDescription(projectNew.getDescription());
+        if (projectNew.getIdManager() != null)
+            project1.setIdManager(projectNew.getIdManager());
+        if (!projectNew.getListOfUsers().isEmpty()) { // при не пустом списке не парсит и вызывает bad request
+            for (User user : project1.getListOfUsers()) {
+                if (!projectNew.getListOfUsers().contains(user)) {
+                    user.setProject(null);
+                }
+            }
+            for (User user : projectNew.getListOfUsers()) {
+                User tempUser = userRepository.findByLogin(user.getLogin());
+                tempUser.setProject(projectNew);
+            }
+        }
+        if (!projectNew.getListOfTasks().isEmpty()) { // при не пустом списке не парсит и вызывает bad request
+            for (Task task : project1.getListOfTasks()) {
+                if (!projectNew.getListOfTasks().contains(task)) {
+                    task.setProject(null);
+                }
+            }
+            for (Task task : projectNew.getListOfTasks()) {
+                Task tempTask = taskRepository.findByTaskName(task.getTaskName());
+                tempTask.setProject(projectNew);
+            }
+        }
+        if (projectNew.getDateStart() != null)
+            project1.setDateStart(projectNew.getDateStart());
+        if (projectNew.getDateEnd() != null)
+            project1.setDateEnd(projectNew.getDateEnd());
 
 
         projRepository.save(project1);
-        logger.info("update - " + project);
+        logger.info("update - " + project1);
     }
 
     @Override
@@ -124,10 +142,9 @@ public class DataBase implements IDataBase {
     @Override
     public void createNewProject(Project project) {
         List<User> listOfUsers = project.getListOfUsers();
-        for(User users : listOfUsers){
+        for (User users : listOfUsers) {
             User tempUser = userRepository.findByLogin(users.getLogin());
             tempUser.setProject(project);
-            //project.addUser(users);
         }
         projRepository.save(project);
         logger.info("save - " + project);

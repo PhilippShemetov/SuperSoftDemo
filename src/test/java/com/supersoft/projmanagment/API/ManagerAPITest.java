@@ -2,9 +2,11 @@ package com.supersoft.projmanagment.API;
 
 import com.supersoft.projmanagment.infrastructure.database.ProjectRepository;
 import com.supersoft.projmanagment.infrastructure.database.TaskRepository;
+import com.supersoft.projmanagment.infrastructure.database.UserRepository;
 import com.supersoft.projmanagment.webserver.projects.Project;
 import com.supersoft.projmanagment.webserver.tasks.Task;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,6 +29,9 @@ public class ManagerAPITest {
     @Autowired
     private TaskRepository taskRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     private final String sDate = "01/12/2020";
     private final String endDate = "31/12/2020";
     private Date dateStart = null;
@@ -35,12 +40,18 @@ public class ManagerAPITest {
     @Test
     public void checkInitManagerTest() {
         assertThat(mngApi).isNotNull();
-
     }
 
-    @AfterEach
+    @Test
+    public void checkInitDataBase() {
+        assertThat(mngApi).isNotNull();
+    }
+
+    @BeforeEach
     public void deleteRecords() {
         projRepository.deleteAll();
+        taskRepository.deleteAll();
+        userRepository.deleteAll();
     }
 
     @Test

@@ -125,7 +125,8 @@ public class DataBase implements IDataBase {
     public void createNewProject(Project project) {
         List<User> listOfUsers = project.getListOfUsers();
         for(User users : listOfUsers){
-            users.setProject(project);
+            User tempUser = userRepository.findByLogin(users.getLogin());
+            tempUser.setProject(project);
             //project.addUser(users);
         }
         projRepository.save(project);

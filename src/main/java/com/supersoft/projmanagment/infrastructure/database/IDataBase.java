@@ -33,4 +33,6 @@ public interface IDataBase {
     List<User> checkUsersInProject(Long id);
 
     List<User> checkAllUsers();
+
+    List<Task> checkTasksInProject(Long id);
 }

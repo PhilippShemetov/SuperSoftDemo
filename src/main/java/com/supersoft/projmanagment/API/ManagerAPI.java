@@ -79,7 +79,7 @@ public class ManagerAPI {
 
     @ResponseBody
     @GetMapping("/projects/users/check/{id}")
-    List<User> checkUsersInProj(@PathVariable Long id) {
+    public List<User> checkUsersInProj(@PathVariable Long id) {
         return server.startManagerHandlerCheckUsersInProj(id);
     }
 
@@ -100,13 +100,4 @@ public class ManagerAPI {
     public List<User> checkAllUser() {
         return server.startManagerHandlerCheckAllUser();
     }
-
-
-    //TODO UPDATE project for user
-    // TODO bind user to task
-
-    // optional
-    //TODO update task in cur project (Сделано)
-    //TODO check users in cur project check project has this data(Сделано)
-    //TODO check tasks in cur project??? check project has this data
 }

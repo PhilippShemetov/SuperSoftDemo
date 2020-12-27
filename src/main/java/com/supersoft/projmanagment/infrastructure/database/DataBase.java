@@ -182,4 +182,10 @@ public class DataBase implements IDataBase {
         }
         return task;
     }
+
+    @Override
+    public List<Task> checkTasksInProject(Long id){
+        Project project = checkProject(id);
+        return project.getListOfTasks();
+    }
 }

@@ -43,38 +43,38 @@ class LoadDatabase {
         };
     }
 
-    @Bean
-    CommandLineRunner initProjects(ProjectRepository repository) {
-        try {
-            dateStart = new SimpleDateFormat("dd/MM/yyyy").parse(sDate);
-            dateEnd = new SimpleDateFormat("dd/MM/yyyy").parse(endDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        Date finalDateStart = dateStart;
-        Date finalDateEnd = dateEnd;
-
-        Project project = new Project("project1", 1L,"allo", finalDateStart, finalDateEnd);
-
-        User user1 = new User("Philipp","Shemetov","admin6","123","executor");
-        User user2 = new User("Misha","Kurakin","admin7","123","executor");
-
-
-
-
-        user1.setProject(project);
-
-        user2.setProject(project);
-        project.addUser(user1);
-        project.addUser(user2);
-//        List<User> listOfUsers = Arrays.asList(user1,user2);
-//        project
-        //Project project2 = new Project("project2", 1L,"hello", finalDateStart, finalDateEnd);
-        return args -> {
-            log.info("Preloading " + repository.save(project));
-            //log.info("Preloading " + repository.save(project2));
-        };
-    }
+//    @Bean
+//    CommandLineRunner initProjects(ProjectRepository repository) {
+//        try {
+//            dateStart = new SimpleDateFormat("dd/MM/yyyy").parse(sDate);
+//            dateEnd = new SimpleDateFormat("dd/MM/yyyy").parse(endDate);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        Date finalDateStart = dateStart;
+//        Date finalDateEnd = dateEnd;
+//
+//        Project project = new Project("project1", 1L,"allo", finalDateStart, finalDateEnd);
+//
+//        User user1 = new User("Philipp","Shemetov","admin6","123","executor");
+//        User user2 = new User("Misha","Kurakin","admin7","123","executor");
+//
+//
+//
+//
+//        user1.setProject(project);
+//
+//        user2.setProject(project);
+//        project.addUser(user1);
+//        project.addUser(user2);
+////        List<User> listOfUsers = Arrays.asList(user1,user2);
+////        project
+//        //Project project2 = new Project("project2", 1L,"hello", finalDateStart, finalDateEnd);
+//        return args -> {
+//            log.info("Preloading " + repository.save(project));
+//            //log.info("Preloading " + repository.save(project2));
+//        };
+//    }
 
 //    @Bean
 //    CommandLineRunner initTasks(DataBase repository) {

@@ -95,5 +95,7 @@ public class Server {
         return extrHandler.checkProject(id);
     }
 
-
+    public List<Task> startExecutorHandlerCheckTasksInProject(Long id) {
+        return extrHandler.checkTasksInProject(id);
+    }
 }

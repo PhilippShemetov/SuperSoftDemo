@@ -54,6 +54,12 @@ public class DataBase implements IDataBase {
     }
 
     @Override
+    public List<User> checkUsersInProject(Long id) {
+        Project project = checkProject(id);
+        return project.getListOfUsers();
+    }
+
+    @Override
     public void createTask(Task task) {
         Project project = checkProject(task.getIdProject());
         project.addTask(task);
@@ -136,6 +142,11 @@ public class DataBase implements IDataBase {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, ex.getMessage());
         }
         return user;
+    }
+
+    @Override
+    public List<User> checkAllUsers() {
+        return userRepository.findAll();
     }
 
     @Override

@@ -71,6 +71,14 @@ public class Server {
         return mngHandler.checkUser(id);
     }
 
+    public List<User> startManagerHandlerCheckUsersInProj(Long id) {
+        return mngHandler.checkUsersInProject(id);
+    }
+
+    public List<User> startManagerHandlerCheckAllUser() {
+        return mngHandler.checkAllUsers();
+    }
+
     //Авторизация
 
     public User authHandler(String login, String password) {
@@ -86,4 +94,6 @@ public class Server {
     public Project startExecutorHandlerCheckProj(Long id) {
         return extrHandler.checkProject(id);
     }
+
+
 }

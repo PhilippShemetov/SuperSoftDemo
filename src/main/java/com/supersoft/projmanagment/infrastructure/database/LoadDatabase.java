@@ -27,21 +27,12 @@ class LoadDatabase {
 
     @Bean
     CommandLineRunner initUsers(UserRepository repository) {
-        User user1 = new User();
-        User user2 = new User();
-        User user3 = new User();
-        User user4 = new User();
-        User user5 = new User();
-        user1.setFirstName("Philipp");
-        user1.setUserType("executor");
-        user2.setFirstName("Misha");
-        user2.setUserType("manager");
-        user3.setFirstName("Artyom");
-        user3.setUserType("manager");
-        user4.setFirstName("Katya");
-        user4.setUserType("manager");
-        user5.setFirstName("Vika");
-        user5.setUserType("manager");
+        User user1 = new User("Philipp","Shemetov","admin","123","executor");
+        User user2 = new User("Misha","Kurakin","admin","123","executor");
+        User user3 = new User("Katya","Guseva","admin","123","manager");
+        User user4 = new User("Artyom","Sadikov","admin","123","manager");
+        User user5 = new User("Vika","Makarova","admin","123","manager");
+
         return args -> {
             log.info("Preloading " + repository.save(user1));
             log.info("Preloading " + repository.save(user2));
@@ -64,21 +55,10 @@ class LoadDatabase {
         Date finalDateEnd = dateEnd;
 
         Project project = new Project("project1", 1L,"allo", finalDateStart, finalDateEnd);
-        User user1 = new User();
-        User user2 = new User();
-        User user3 = new User();
-        User user4 = new User();
-        User user5 = new User();
-        user1.setFirstName("Philipp");
-        user1.setUserType("executor");
-        user2.setFirstName("Misha");
-        user2.setUserType("manager");
-        user3.setFirstName("Artyom");
-        user3.setUserType("manager");
-        user4.setFirstName("Katya");
-        user4.setUserType("manager");
-        user5.setFirstName("Vika");
-        user1.setUserType("manager");
+
+        User user1 = new User("Philipp","Shemetov","admin","123","executor");
+        User user2 = new User("Misha","Kurakin","admin","123","executor");
+
 
 
 

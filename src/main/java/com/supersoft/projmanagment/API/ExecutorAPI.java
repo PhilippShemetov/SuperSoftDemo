@@ -15,7 +15,7 @@ public class ExecutorAPI {
     @Autowired
     private Server server;
 
-
+    //Функции связанные с проектами
 
     @ResponseBody
     @GetMapping("/projects/check/{id}")
@@ -27,12 +27,15 @@ public class ExecutorAPI {
     @ResponseBody
     @GetMapping("/projects/check")
     List<Project> checkProjectAll() {
-        //TODO
         return server.startExecutorHandlerCheckProjects();
     }
 
+    //Функции связанные с задачами
+
+    //Функции связанные с пользователями
+
     // свои проекты?? спросить у Темы
-    //TODO check project
+    //TODO check project(Сделано)
     //TODO check task
     //TODO update end date
     //TODO check own task

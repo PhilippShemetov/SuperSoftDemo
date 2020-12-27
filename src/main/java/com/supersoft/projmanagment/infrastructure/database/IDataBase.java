@@ -29,4 +29,8 @@ public interface IDataBase {
     User checkUser(Long id);
 
     void updateTask(Long id, Task task);
+
+    List<User> checkUsersInProject(Long id);
+
+    List<User> checkAllUsers();
 }

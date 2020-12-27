@@ -1,5 +1,6 @@
 package com.supersoft.projmanagment.webserver.users;
 
+import com.sun.org.apache.bcel.internal.generic.RETURN;
 import com.supersoft.projmanagment.infrastructure.database.IDataBase;
 import com.supersoft.projmanagment.webserver.projects.Project;
 import com.supersoft.projmanagment.webserver.tasks.Task;
@@ -56,6 +57,16 @@ public class Manager implements IManager {
     @Override
     public User checkUser(Long id) {
         return iDataBase.checkUser(id);
+    }
+
+    @Override
+    public List<User> checkAllUsers() {
+        return iDataBase.checkAllUsers();
+    }
+
+    @Override
+    public List<User> checkUsersInProject(Long id) {
+        return iDataBase.checkUsersInProject(id);
     }
 
     @Override

@@ -28,5 +28,9 @@ public interface IManager {
     void updateUser(Long id, User user);
 
     User checkUser(Long id);
+
+    List<User> checkUsersInProject(Long id);
+
+    List<User> checkAllUsers();
 //    void getManagerStatistics();
 }

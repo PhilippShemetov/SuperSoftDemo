@@ -16,6 +16,8 @@ public class ManagerAPI {
     @Autowired
     private Server server;
 
+    //Функции связанные с проектами
+
     @ResponseBody
     @GetMapping("/projects/check/{id}")
     Project checkProject(@PathVariable Long id) {
@@ -34,15 +36,24 @@ public class ManagerAPI {
         server.startManagerHandler(project);
     }
 
+    @DeleteMapping("/projects/delete/{id}")
+    void deleteProject(@PathVariable Long id) {
+        server.startManagerHandlerDeleteProj(id);
+    }
+
+    @ResponseBody
+    @PostMapping("/projects/update/{id}")
+    public void updateProject(@PathVariable Long id, @RequestBody Project project) {
+        server.startManagerHandlerUpdateProj(id, project);
+    }
+
+
+    //Функции связанные с задачами
+
     @ResponseBody
     @PostMapping("/task/create")
     public void createTask(@RequestBody Task task) {
         server.startManagerHandlerCreateTask(task);
-    }
-
-    @DeleteMapping("/projects/delete/{id}")
-    void deleteProject(@PathVariable Long id) {
-        server.startManagerHandlerDeleteProj(id);
     }
 
     @ResponseBody
@@ -57,13 +68,20 @@ public class ManagerAPI {
     }
 
     @ResponseBody
-    @PostMapping("/projects/update/{id}")
-    public void updateProject(@PathVariable Long id, @RequestBody Project project) {
-        server.startManagerHandlerUpdateProj(id, project);
+    @PostMapping("/task/update/{id}")
+    public void updateTask(@PathVariable Long id, @RequestBody Task task) {
+        server.startManagerHandlerUpdateTask(id, task);
     }
 
 
-    // add and delete users to cur project (changing project id)
+    //Функции связанные с пользователями
+
+    @ResponseBody
+    @GetMapping("/projects/users/check/{id}")
+    List<User> checkUsersInProj(@PathVariable Long id) {
+        return server.startManagerHandlerCheckUsersInProj(id);
+    }
+
     @ResponseBody
     @PostMapping("/users/update/{id}")
     public void updateUser(@PathVariable Long id, @RequestBody User user) {
@@ -77,14 +95,16 @@ public class ManagerAPI {
     }
 
     @ResponseBody
-    @PostMapping("/task/update/{id}")
-    public void updateTask(@PathVariable Long id, @RequestBody Task task) {
-        server.startManagerHandlerUpdateTask(id, task);
+    @GetMapping("/users/check")
+    public List<User> checkAllUser() {
+        return server.startManagerHandlerCheckAllUser();
     }
+
+
 
 
     // optional
     //TODO update task in cur project (Сделано)
-    //TODO check users in cur project check project has this data
+    //TODO check users in cur project check project has this data(Сделано)
     //TODO check tasks in cur project??? check project has this data
 }

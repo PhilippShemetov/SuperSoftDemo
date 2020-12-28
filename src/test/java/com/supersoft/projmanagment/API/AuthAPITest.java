@@ -45,6 +45,15 @@ public class AuthAPITest {
         assertThat(authUser == null);
     }
 
+    @Test
+    public void authorizationWithWrongLogin() {
+        User usr = new User("Bob", "Anderson", "test2", "123", "manager");
+        userRepository.save(usr);
+        usr.setLogin("tst2");
+        User authUser = auth.login(usr);
+        assertThat(authUser == null);
+    }
+
     @AfterEach
     public void deleteRecords() {
         userRepository.deleteAll();

@@ -31,4 +31,6 @@ public interface IManager {
     List<User> checkUsersInProject(Long id);
 
     List<User> checkAllUsers();
+
+    List<Task> checkTasksInProject(Long id);
 }

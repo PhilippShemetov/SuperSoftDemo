@@ -95,8 +95,8 @@ public class ExecutorAPITest {
         Date finalDateEnd = dateEnd;
 
         Project project = new Project("project1", 1L, "allo", finalDateStart, finalDateEnd);
-        Task task1 = new Task("task1", "test1 tasks descr", true, "test2", finalDateStart, finalDateEnd,1L);
-        Task task2 = new Task("task2", "test2 tasks descr", true, "test3", finalDateStart, finalDateEnd,1L);
+        Task task1 = new Task("task1", "test1 tasks descr", "new", "test2", finalDateStart, finalDateEnd,1L);
+        Task task2 = new Task("task2", "test2 tasks descr", "new", "test3", finalDateStart, finalDateEnd,1L);
 
         task1.setProject(project);
         task1.setProject(project);

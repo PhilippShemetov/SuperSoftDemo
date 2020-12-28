@@ -20,7 +20,7 @@ public class Task {
 
     String description;
 
-    Boolean taskStatus;
+    String taskStatus;
 
     String assignedTo;
 
@@ -40,7 +40,7 @@ public class Task {
     public Task() {
 
     }
-    public Task(String taskName, String description, Boolean taskStatus, String assignedTo, Date dateStart, Date dateEnd,Long idProject) {
+    public Task(String taskName, String description, String taskStatus, String assignedTo, Date dateStart, Date dateEnd,Long idProject) {
         this.taskName = taskName;
         this.description = description;
         this.taskStatus = taskStatus;
@@ -82,11 +82,11 @@ public class Task {
         this.description = description;
     }
 
-    public Boolean getTaskStatus() {
+    public String getTaskStatus() {
         return taskStatus;
     }
 
-    public void setTaskStatus(Boolean taskStatus) {
+    public void setTaskStatus(String taskStatus) {
         this.taskStatus = taskStatus;
     }
 

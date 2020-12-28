@@ -136,7 +136,7 @@ public class ManagerAPITest {
         Date finalDateStart = dateStart;
         Date finalDateEnd = dateEnd;
         Project proj = new Project("TestProj", 1L, "hello", finalDateStart, finalDateEnd);
-        Task task = new Task("taskName","des",true,"null",finalDateStart,finalDateEnd,1L);
+        Task task = new Task("taskName","des","new","null",finalDateStart,finalDateEnd,1L);
         List<Task> listOfTask = new ArrayList<>();
         listOfTask.add(task);
         proj.setListOfTasks(listOfTask);
@@ -208,7 +208,7 @@ public class ManagerAPITest {
         mngApi.createProject(project);
         Project rep = projRepository.findByProjectName("project2");
         Task task = new Task("task1", "test1 tasks descr",
-                true, "test2", finalDateStart, finalDateEnd, rep.getIdProject());
+                "new", "test2", finalDateStart, finalDateEnd, rep.getIdProject());
         mngApi.createTask(task);
         assertThat(taskRepository.existsByTaskName("task1"));
     }
@@ -230,7 +230,7 @@ public class ManagerAPITest {
         mngApi.createProject(project);
         Project rep = projRepository.findByProjectName("project2");
         Task task = new Task("task1", "test1 tasks descr",
-                true, "test2", finalDateStart, finalDateEnd, rep.getIdProject());
+                "new", "test2", finalDateStart, finalDateEnd, rep.getIdProject());
         mngApi.createTask(task);
         mngApi.deleteTask(task.getTaskId());
         assertThat(!taskRepository.existsByTaskName("task1"));
@@ -254,7 +254,7 @@ public class ManagerAPITest {
         mngApi.createProject(project);
         Project rep = projRepository.findByProjectName("project2");
         Task task = new Task("task1", "test1 tasks descr",
-                true, "test2", finalDateStart, finalDateEnd, rep.getIdProject());
+                "new", "test2", finalDateStart, finalDateEnd, rep.getIdProject());
         mngApi.createTask(task);
         task.setDescription(expectedDescr);
         mngApi.updateTask(task.getTaskId(),task);
@@ -264,7 +264,7 @@ public class ManagerAPITest {
 
     @Test
     public void updateTaskStatusTest() {
-        boolean expectedStatus = true;
+        String expectedStatus = "expire";
         Date dateStart = null;
         Date dateEnd = null;
         try {
@@ -280,12 +280,12 @@ public class ManagerAPITest {
         mngApi.createProject(project);
         Project rep = projRepository.findByProjectName("project2");
         Task task = new Task("task1", "test1 tasks descr",
-                true, "test2", finalDateStart, finalDateEnd, rep.getIdProject());
+                "new", "test2", finalDateStart, finalDateEnd, rep.getIdProject());
         mngApi.createTask(task);
         task.setTaskStatus(expectedStatus);
         mngApi.updateTask(task.getTaskId(),task);
         Task taskFromRep = taskRepository.findByTaskName("task1");
-        assertThat(taskFromRep.getTaskStatus());
+        assertThat(taskFromRep.getTaskStatus().equals("expire"));
     }
 
     @Test
@@ -305,7 +305,7 @@ public class ManagerAPITest {
         mngApi.createProject(project);
         Project rep = projRepository.findByProjectName("project2");
         Task task = new Task("task1", "test1 tasks descr",
-                true, "test2", finalDateStart, finalDateEnd, rep.getIdProject());
+                "new", "test2", finalDateStart, finalDateEnd, rep.getIdProject());
         mngApi.createTask(task);
         task.setProject(null);
         mngApi.updateTask(task.getTaskId(),task);
@@ -336,7 +336,7 @@ public class ManagerAPITest {
         mngApi.createProject(project);
         Project rep = projRepository.findByProjectName("project2");
         Task task = new Task("task1", "test1 tasks descr",
-                true, "test2", finalDateStart, finalDateEnd, rep.getIdProject());
+                "new", "test2", finalDateStart, finalDateEnd, rep.getIdProject());
         mngApi.createTask(task);
         Task repTask = taskRepository.findByTaskName("task1");
         assertThat(repTask.getIdProject() == rep.getIdProject());

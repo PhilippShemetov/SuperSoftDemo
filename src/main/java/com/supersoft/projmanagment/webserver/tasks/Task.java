@@ -14,28 +14,22 @@ import java.util.Objects;
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@Column(name = "task_id")
     Long taskId;
 
-    //@Column(name = "task_name")
     String taskName;
 
     String description;
 
-    //@Column(name = "task_status")
     Boolean taskStatus;
 
-    //@Column(name = "assigned_to")
     String assignedTo;
 
-    //@Column(name = "date_start")
     Date dateStart;
 
-    //@Column(name = "date_end")
     Date dateEnd;
 
     @JsonIgnore
-    @ManyToOne(/*fetch = FetchType.EAGER, cascade = CascadeType.ALL*/)
+    @ManyToOne()
     @JoinColumn(name = "id_project")
     private Project project;
 

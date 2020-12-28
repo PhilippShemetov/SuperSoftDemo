@@ -14,16 +14,11 @@ import java.util.Objects;
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@Column(name = "id_project")
     private Long idProject;
 
-    //@Column(name = "project_name")
     private String projectName;
 
-    //    @OneToOne(cascade = CascadeType.ALL)
-    //@Column(name = "id_manager")
     private Long idManager;
-    //    private String users = "1 ,2 ,3, 4";
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL,
             orphanRemoval = true)
     List<User> listOfUsers = new ArrayList<>();
@@ -34,10 +29,8 @@ public class Project {
 
     private String description;
 
-    //@Column(name = "date_start")
     private Date dateStart;
 
-    //@Column(name = "date_end")
     private Date dateEnd;
 
     public Project(String projectName, Long idManager, List<User> listOfUsers, List<Task> listOfTasks, String description, Date dateStart, Date dateEnd) {
@@ -167,8 +160,6 @@ public class Project {
                 "idProject='" + idProject + '\'' +
                 ", projectName='" + projectName + '\'' +
                 ", idManager='" + idManager + '\'' +
-//                ", listOfUsers=" + listOfUsers +
-//                ", listOfTasks=" + listOfTasks +
                 ", description='" + description + '\'' +
                 ", dateStart=" + dateStart +
                 ", dateEnd=" + dateEnd +

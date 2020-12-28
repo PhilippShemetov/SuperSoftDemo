@@ -11,25 +11,21 @@ import java.util.Objects;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@Column(name = "id_user")
     private Long idUser;
 
-    //@Column(name = "first_name")
     private String firstName;
 
-    //@Column(name = "last_name")
     private String lastName;
 
     private String login;
 
     private Boolean accepted; //Зарегестрирован или нет?
 
-    //@Column(name = "user_type")
     private String userType;
 
     private String password;
     @JsonIgnore
-    @ManyToOne(/*fetch = FetchType.LAZY*/)
+    @ManyToOne()
     @JoinColumn(name = "id_project")
     private Project project;
 

@@ -14,7 +14,6 @@ public interface IManager {
 
     Task checkTask(Long id);
 
-    //    void editProject();
     void createTask(Task task);
 
     void deleteTask(Long id);
@@ -32,5 +31,4 @@ public interface IManager {
     List<User> checkUsersInProject(Long id);
 
     List<User> checkAllUsers();
-//    void getManagerStatistics();
 }

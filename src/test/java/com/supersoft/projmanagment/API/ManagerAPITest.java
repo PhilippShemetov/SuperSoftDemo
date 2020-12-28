@@ -327,12 +327,7 @@ public class ManagerAPITest {
         Date finalDateEnd = dateEnd;
 
         Project project = new Project("project2", 1L, "allo", finalDateStart, finalDateEnd);
-//        User user1 = new User();
-//        User user2 = new User();
-//        user1.setFirstName("Philipp");
-//        user1.setProject(project);
-//        user2.setFirstName("Misha");
-//        user2.setProject(project);
+        
         mngApi.createProject(project);
         Project rep = projRepository.findByProjectName("project2");
         Task task = new Task("task1", "test1 tasks descr",

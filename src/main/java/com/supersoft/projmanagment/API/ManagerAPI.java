@@ -7,6 +7,7 @@ import com.supersoft.projmanagment.webserver.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -28,6 +29,12 @@ public class ManagerAPI {
     @GetMapping("/projects/check")
     List<Project> checkProjectAll() {
         return server.startManagerHandlerCheckProjects();
+    }
+
+    @ResponseBody
+    @GetMapping("projects/static/check/{id}")
+    HashMap<String,Integer> checkStaticOfProject(@PathVariable Long id) {
+        return server.startManagerHandlerStaticProject(id);
     }
 
     @ResponseBody

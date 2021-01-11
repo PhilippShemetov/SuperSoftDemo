@@ -3,6 +3,7 @@ package com.supersoft.projmanagment.webserver.users;
 import com.supersoft.projmanagment.webserver.projects.Project;
 import com.supersoft.projmanagment.webserver.tasks.Task;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface IManager {
@@ -33,4 +34,6 @@ public interface IManager {
     List<User> checkAllUsers();
 
     List<Task> checkTasksInProject(Long id);
+
+    HashMap<String,Integer> checkStaticProject(Long id);
 }

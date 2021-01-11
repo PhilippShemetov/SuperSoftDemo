@@ -9,6 +9,7 @@ import com.supersoft.projmanagment.webserver.users.auth.Authorisation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -83,6 +84,10 @@ public class Server {
         return mngHandler.checkTasksInProject(id);
     }
 
+    public HashMap<String,Integer> startManagerHandlerStaticProject(Long id) {
+        return mngHandler.checkStaticProject(id);
+    }
+
     //Авторизация
 
     public User authHandler(String login, String password) {
@@ -102,4 +107,6 @@ public class Server {
     public List<Task> startExecutorHandlerCheckTasksInProject(Long id) {
         return extrHandler.checkTasksInProject(id);
     }
+
+
 }

@@ -7,6 +7,10 @@ import com.supersoft.projmanagment.webserver.tasks.Task;
 import com.supersoft.projmanagment.webserver.tasks.TaskNotFoundException;
 import com.supersoft.projmanagment.webserver.users.User;
 import com.supersoft.projmanagment.webserver.users.UserNotFoundException;
+import org.joda.time.Days;
+import org.joda.time.Duration;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +18,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 @Component
@@ -74,6 +83,35 @@ public class DataBase implements IDataBase {
         logger.info("project with id " + id + " has deleted");
     }
 
+    @Override
+    public LinkedHashMap<String,Integer> checkStaticProject(Long id) {
+        Project proj = checkProject(id);
+        List<Task> taskList = proj.getListOfTasks();
+        int countNew = 0, countMark = 0, countExpire = 0;
+        for(Task taskTemp : taskList){
+            if(taskTemp.getTaskStatus().equals("new")){
+                countNew++;
+            } else if(taskTemp.getTaskStatus().equals("markdown")){
+                countMark++;
+            } else if(taskTemp.getTaskStatus().equals("expire")){
+                countExpire++;
+            }
+        }
+        Date dateStart = proj.getDateStart();
+        Date dateEnd = proj.getDateEnd();
+        System.out.println (dateStart.toString());
+        System.out.println (dateEnd.toString());
+        Instant now = dateStart.toInstant();
+        Instant future = dateEnd.toInstant();
+        int daysLeft = (int)ChronoUnit.DAYS.between(now,future);
+        LinkedHashMap<String,Integer> myMap = new LinkedHashMap<String, Integer>();
+        myMap.put("DaysLeft", daysLeft);
+        myMap.put("TaskNotInProgress", countNew);
+        myMap.put("TaskInProgress", countMark);
+        myMap.put("TaskFinish", countExpire);
+        System.out.println (myMap);
+        return myMap;
+    }
 
     @Override
     public Project checkProject(Long id) {

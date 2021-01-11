@@ -6,6 +6,7 @@ import com.supersoft.projmanagment.webserver.tasks.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -76,6 +77,11 @@ public class Manager implements IManager {
     @Override
     public List<Task> checkTasksInProject(Long id) {
         return iDataBase.checkTasksInProject(id);
+    }
+
+    @Override
+    public HashMap<String,Integer> checkStaticProject(Long id) {
+        return iDataBase.checkStaticProject(id);
     }
 
     @Override

@@ -2,6 +2,7 @@
 *.iml
 out/
 gen/
+target/
 idea-gitignore.jar
 resources/templates.list
 resources/gitignore/*
